@@ -13,28 +13,20 @@ import java.io.IOException;
 @WebServlet("/")
 public class MainServlet extends HttpServlet {
 
-    PlaceDAOImpl placeDAO = new PlaceDAOImpl();
+    private PlaceDAOImpl placeDAO;
+
+    @Override
+    public void init() throws ServletException {
+        placeDAO = new PlaceDAOImpl();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("CREATE 2 NEW ENTyTIES");
-        placeDAO.save(new Place("name1", "w", "add", "trtskfhlsdf"));
-        placeDAO.save(new Place("name2", "s", "add", "5465"));
-        System.out.println("FINDALL");
-        placeDAO.findAll().forEach(System.out::println);
-        System.out.println("UPDATING");
-        placeDAO.update(new Place(1, "nameNEW", "w", "add", "trtskfhlsdf"));
-        System.out.println("FINDBYID");
-        System.out.println(placeDAO.findById(1).toString());
-        System.out.println("DELETE");
-        placeDAO.deleteById(2);
-        System.out.println("FINDALL");
-        System.out.println(placeDAO.findAll());
-        resp.getWriter().print("HALLO");
+       req.getRequestDispatcher("WEB-INF/views/index.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        doGet(req, resp);
     }
 }

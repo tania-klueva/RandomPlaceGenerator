@@ -13,14 +13,12 @@ import java.util.List;
 
 public class PlaceDAOImpl implements PlaceDAO {
 
-    Connection connection;
+    private Connection connection;
 
     public PlaceDAOImpl() {
         try {
             this.connection = new DBConnection().getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -35,37 +33,73 @@ public class PlaceDAOImpl implements PlaceDAO {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
+                e.printStackTrace();
+
         }
     }
 
     public Place findById(int id) {
-        Place place = new Place();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, address, description from Place where id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
+                Place place = new Place();
                 place.setId(resultSet.getInt(1));
                 place.setName(resultSet.getString(2));
                 place.setSpecification(resultSet.getString(3));
                 place.setAddress(resultSet.getString(4));
                 place.setDescription(resultSet.getString(5));
+                return place;
             }
         } catch (SQLException e) {
 
             e.printStackTrace();
         }
-        return place;
-    }
-
-    public Place findBySpecification(String specification) {
         return null;
     }
 
-    public List<Place> findAll() {
-        List<Place> places = new ArrayList<>();
+    public Place findBySpecification(String specification) {
         try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, address, description from Place where specification = ?");
+            preparedStatement.setString(1, specification);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Place place = new Place();
+                place.setId(resultSet.getInt(1));
+                place.setName(resultSet.getString(2));
+                place.setSpecification(resultSet.getString(3));
+                place.setAddress(resultSet.getString(4));
+                place.setDescription(resultSet.getString(5));
+                return place;
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int getMaxId(){
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) from Place ");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
+    public List<Place> findAll() {
+
+        try {
+            List<Place> places = new ArrayList<>();
             ResultSet resultSet = connection.prepareStatement("SELECT id, name, specification, address, description from Place").executeQuery();
             while (resultSet.next()) {
                 Place place = new Place();
@@ -76,10 +110,11 @@ public class PlaceDAOImpl implements PlaceDAO {
                 place.setDescription(resultSet.getString(5));
                 places.add(place);
             }
+            return places;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return places;
+        return null;
     }
 
     public void update(Place place) {
@@ -97,8 +132,8 @@ public class PlaceDAOImpl implements PlaceDAO {
             preparedStatement.setInt(5, place.getId());
             preparedStatement.executeUpdate();
 
-            } catch (SQLException e1) {
-            e1.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
         }
     }
 
@@ -108,7 +143,7 @@ public class PlaceDAOImpl implements PlaceDAO {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+                e.printStackTrace();
         }
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tank
@@ -14,27 +15,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body class="bg-dark">
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Eater</a>
-
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Places</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
+<jsp:include page="header.jsp"/>
 <div class=" container p-5">
-    <h1 class="display-3 text-center font-weight-light text-light p-5">Name</h1>
+    <h1 class="display-3 text-center font-weight-light text-light p-5">${place.name}</h1>
     <div class="row gallery overflow-hidden p-3">
         <div id="carousel1" class="carousel slide  w-100" data-ride="carousel">
             <div class="carousel-inner">
@@ -81,33 +64,19 @@
             <div class="p-3 border rounded">
                 <div class="row">
                     <div class="col-4"><p class="text-light">Specification</p></div>
-                    <div class="col-8"><p class="text-light">Tratatata tatata tata</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4"><p class="text-light">City</p></div>
-                    <div class="col-8"><p class="text-light">Lviv</p></div>
+                    <div class="col-8"><p class="text-light">${place.specification}</p></div>
                 </div>
                 <div class="row">
                     <div class="col-4"><p class="text-light">Address</p></div>
-                    <div class="col-8"><p class="text-light">Vrum vrum</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-4"><p class="text-light">Specification</p></div>
-                    <div class="col-8"><p class="text-slight">Tratatata tatata tata</p></div>
+                    <div class="col-8"><p class="text-light">${place.address}</p></div>
                 </div>
 
-                <p class="row text-light font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Alias
-                    delectus deleniti et neque. Animi cumque debitis delectus, enim eum exercitationem explicabo harum
-                    iusto laboriosam laudantium maxime minima minus necessitatibus nesciunt, nihil omnis optio placeat
-                    provident quasi quidem repellendus repudiandae sequi unde. Alias commodi culpa dolore dolorem enim
-                    facere facilis illo ipsum magni, minima, officia perferendis, perspiciatis qui quia reiciendis
-                    repellat saepe tempore totam vero voluptates! Ad at cum, distinctio dolores eaque et eveniet
-                    excepturi illum ipsa itaque libero magni minima modi molestiae, officiis omnis, perspiciatis porro
-                    quia quis quod quos ratione recusandae rem sit suscipit temporibus tenetur ut velit vitae.</p>
+                <p class="row text-light font-weight-light">${place.description}</p>
                 <div class="row">
-                    <a href="" class="">Edit</a>
-                    <a href="">Delete</a>
+                    <a href=""<c:url value='place/edit?id=${place.id}'/>"" class="">Edit</a>
+                    <form method="post" action="<c:url value='place/delete?id=${place.id}'/>">
+                        <input type="submit" value="Delete">
+                    </form>
                 </div>
 
 
