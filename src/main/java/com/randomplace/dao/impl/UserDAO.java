@@ -15,7 +15,7 @@ public class UserDAO implements IUserDAO {
 
     private Connection connection;
 
-    public UserDAO(Connection connection) {
+    public UserDAO() {
         this.connection = DBConnection.getConnection();
     }
 

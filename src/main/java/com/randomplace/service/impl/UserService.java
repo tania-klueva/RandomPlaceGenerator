@@ -1,11 +1,20 @@
 package com.randomplace.service.impl;
 
+import com.randomplace.dao.impl.UserDAO;
 import com.randomplace.models.User;
 import com.randomplace.service.IUserService;
 
 import java.util.List;
 
 public class UserService implements IUserService {
+
+
+    UserDAO userDAO;
+
+    public UserService() {
+        this.userDAO = new UserDAO();
+    }
+
     @Override
     public void save(User user) {
 
