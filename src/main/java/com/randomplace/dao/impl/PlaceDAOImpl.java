@@ -3,6 +3,7 @@ package com.randomplace.dao.impl;
 import com.randomplace.connection.DBConnection;
 import com.randomplace.dao.PlaceDAO;
 import com.randomplace.models.Place;
+import com.randomplace.models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,30 +17,31 @@ public class PlaceDAOImpl implements PlaceDAO {
     private Connection connection;
 
     public PlaceDAOImpl() {
-            this.connection = DBConnection.getConnection();
+        this.connection = DBConnection.getConnection();
     }
 
     public void save(Place place) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Place(name, specification, city, address, description, imagePath) VALUE (?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Places(name, specification, city, address, description, imagePath, userId) VALUE (?,?,?,?,?,?,?)");
             preparedStatement.setString(1, place.getName());
             preparedStatement.setString(2, place.getSpecification());
             preparedStatement.setString(3, place.getCity());
             preparedStatement.setString(4, place.getAddress());
             preparedStatement.setString(5, place.getDescription());
             preparedStatement.setString(6, place.getImagePath());
+            preparedStatement.setInt(7, place.getUser().getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
 
-                e.printStackTrace();
+            e.printStackTrace();
 
         }
     }
 
     public Place findById(int id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath from Place where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId from Places where id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -51,6 +53,7 @@ public class PlaceDAOImpl implements PlaceDAO {
                 place.setAddress(resultSet.getString(5));
                 place.setDescription(resultSet.getString(6));
                 place.setImagePath(resultSet.getString(7));
+                place.setUser(new User(resultSet.getInt(8)));
                 return place;
             }
         } catch (SQLException e) {
@@ -62,7 +65,7 @@ public class PlaceDAOImpl implements PlaceDAO {
 
     public Place findBySpecification(String specification) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, address, description from Place where specification = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId from Places where specification = ?");
             preparedStatement.setString(1, specification);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -70,8 +73,11 @@ public class PlaceDAOImpl implements PlaceDAO {
                 place.setId(resultSet.getInt(1));
                 place.setName(resultSet.getString(2));
                 place.setSpecification(resultSet.getString(3));
-                place.setAddress(resultSet.getString(4));
-                place.setDescription(resultSet.getString(5));
+                place.setCity(resultSet.getString(4));
+                place.setAddress(resultSet.getString(5));
+                place.setDescription(resultSet.getString(6));
+                place.setImagePath(resultSet.getString(7));
+                place.setUser(new User(resultSet.getInt(8)));
                 return place;
             }
         } catch (SQLException e) {
@@ -81,12 +87,12 @@ public class PlaceDAOImpl implements PlaceDAO {
         return null;
     }
 
-    public int getMaxId(){
+    public int getMaxId() {
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) from Place ");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) from Places ");
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt(1);
             }
         } catch (SQLException e) {
@@ -100,7 +106,7 @@ public class PlaceDAOImpl implements PlaceDAO {
 
         try {
             List<Place> places = new ArrayList<>();
-            ResultSet resultSet = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath from Place").executeQuery();
+            ResultSet resultSet = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId from Places").executeQuery();
             while (resultSet.next()) {
                 Place place = new Place();
                 place.setId(resultSet.getInt(1));
@@ -121,13 +127,14 @@ public class PlaceDAOImpl implements PlaceDAO {
 
     public void update(Place place) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Place SET "
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Places SET "
                     + "name = ?, "
                     + "specification = ?, "
                     + "city = ?, "
                     + "address =  ?, "
-                    + "description = ? "
-                    + "imagePath = ? "
+                    + "description = ?, "
+                    + "imagePath = ? ,"
+                    + "userId = ? "
                     + "WHERE id = ?");
             preparedStatement.setString(1, place.getName());
             preparedStatement.setString(2, place.getSpecification());
@@ -135,21 +142,22 @@ public class PlaceDAOImpl implements PlaceDAO {
             preparedStatement.setString(4, place.getAddress());
             preparedStatement.setString(5, place.getDescription());
             preparedStatement.setString(5, place.getImagePath());
-            preparedStatement.setInt(7, place.getId());
+            preparedStatement.setInt(7, place.getUser().getId());
+            preparedStatement.setInt(8, place.getId());
             preparedStatement.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     public void deleteById(int id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE from Place where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE from Places where id = ?");
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

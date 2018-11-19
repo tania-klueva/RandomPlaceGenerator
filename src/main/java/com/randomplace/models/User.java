@@ -28,7 +28,7 @@ public class User {
     }
 
     public User(int id, Role role, String email, String password, String firstName, String lastName, String city, List<Place> places) {
-        this.id = id;
+
         this.role = role;
         this.email = email;
         this.password = password;
@@ -36,6 +36,10 @@ public class User {
         this.lastName = lastName;
         this.city = city;
         this.places = places;
+    }
+
+    public User(int id) {
+        this.id = id;
     }
 
     public int getId() {

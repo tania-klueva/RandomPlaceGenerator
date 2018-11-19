@@ -2,6 +2,7 @@ package com.randomplace.servlets;
 
 import com.randomplace.dao.impl.PlaceDAOImpl;
 import com.randomplace.models.Place;
+import com.randomplace.models.User;
 import com.randomplace.utils.FileUtils;
 
 import javax.servlet.ServletException;
@@ -48,7 +49,7 @@ public class PlaceCreate extends HttpServlet {
         String path = getServletContext().getRealPath("");
         String savePath = File.separator +  "resources" + File.separator + "images" + File.separator + fileUtils.createFileName(file);
         file.write(path + savePath);
-        Place place = new Place(name, specification, city, address, description, savePath, user);
+        Place place = new Place(name, specification, city, address, description, savePath, new User());
         placeDAO.save(place);
         resp.sendRedirect("/place");
     }
