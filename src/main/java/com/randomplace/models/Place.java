@@ -11,11 +11,12 @@ public class Place {
     private String address;
     private String description;
     private String imagePath;
+    private User user;
 
     public Place() {
     }
 
-    public Place(int id, String name, String specification, String city, String address, String description, String imagePath) {
+    public Place(int id, String name, String specification, String city, String address, String description, String imagePath, User user) {
         this.id = id;
         this.name = name;
         this.specification = specification;
@@ -23,15 +24,17 @@ public class Place {
         this.address = address;
         this.description = description;
         this.imagePath = imagePath;
+        this.user = user;
     }
 
-    public Place(String name, String specification, String city, String address, String description, String imagePath) {
+    public Place(String name, String specification, String city, String address, String description, String imagePath, User user) {
         this.name = name;
         this.specification = specification;
         this.city = city;
         this.address = address;
         this.description = description;
         this.imagePath = imagePath;
+        this.user = user;
     }
 
     public int getId() {
@@ -120,5 +123,13 @@ public class Place {
                 ", description='" + description + '\'' +
                 ", imagePath='" + imagePath + '\'' +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
