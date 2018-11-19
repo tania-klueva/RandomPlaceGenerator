@@ -1,6 +1,6 @@
 package com.randomplace.servlets;
 
-import com.randomplace.dao.impl.PlaceDAOImpl;
+import com.randomplace.dao.impl.PlaceDAO;
 import com.randomplace.models.Place;
 import com.randomplace.models.User;
 import com.randomplace.utils.FileUtils;
@@ -24,12 +24,12 @@ import java.io.IOException;
 public class PlaceCreate extends HttpServlet {
 
 
-    private PlaceDAOImpl placeDAO;
+    private PlaceDAO placeDAO;
     private FileUtils fileUtils;
 
     @Override
     public void init() throws ServletException {
-        placeDAO = new PlaceDAOImpl();
+        placeDAO = new PlaceDAO();
         fileUtils = FileUtils.getInstance();
     }
 

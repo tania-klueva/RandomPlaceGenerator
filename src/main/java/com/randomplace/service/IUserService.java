@@ -1,10 +1,10 @@
-package com.randomplace.dao;
+package com.randomplace.service;
 
 import com.randomplace.models.User;
 
 import java.util.List;
 
-public interface UserDAO {
+public interface IUserService {
     void save(User user);
     User findByEmail(String email);
     String findUserPasswordByEmail(String email);
@@ -12,5 +12,4 @@ public interface UserDAO {
     List<User> findAll();
     void update(User user);
     void deleteById(int id);
-
 }

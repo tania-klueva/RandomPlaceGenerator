@@ -1,6 +1,6 @@
 package com.randomplace.servlets;
 
-import com.randomplace.dao.impl.PlaceDAOImpl;
+import com.randomplace.dao.impl.PlaceDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +12,11 @@ import java.io.IOException;
 @WebServlet("/")
 public class MainServlet extends HttpServlet {
 
-    private PlaceDAOImpl placeDAO;
+    private PlaceDAO placeDAO;
 
     @Override
     public void init() throws ServletException {
-        placeDAO = new PlaceDAOImpl();
+        placeDAO = new PlaceDAO();
     }
 
     @Override

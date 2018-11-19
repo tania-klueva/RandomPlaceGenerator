@@ -4,7 +4,7 @@ import com.randomplace.models.Place;
 
 import java.util.List;
 
-public interface PlaceDAO {
+public interface IPlaceDAO {
     void save(Place place);
     Place findById(int id);
     Place findBySpecification(String specification);

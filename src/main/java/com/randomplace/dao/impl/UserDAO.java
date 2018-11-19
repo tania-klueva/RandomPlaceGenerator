@@ -1,8 +1,7 @@
 package com.randomplace.dao.impl;
 
 import com.randomplace.connection.DBConnection;
-import com.randomplace.dao.UserDAO;
-import com.randomplace.models.User;
+import com.randomplace.dao.IUserDAO;
 import com.randomplace.models.User;
 
 import java.sql.Connection;
@@ -12,11 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDAO implements IUserDAO {
 
     private Connection connection;
 
-    public UserDAOImpl(Connection connection) {
+    public UserDAO(Connection connection) {
         this.connection = DBConnection.getConnection();
     }
 

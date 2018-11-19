@@ -1,23 +1,19 @@
 package com.randomplace.servlets;
 
-import com.randomplace.dao.impl.PlaceDAOImpl;
-import com.randomplace.models.Place;
+import com.randomplace.dao.impl.PlaceDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @WebServlet("/place/edit")
 public class PlaceEdit extends HttpServlet {
 
-    private PlaceDAOImpl placeDAO;
+    private PlaceDAO placeDAO;
 
     @Override
     public void init() throws ServletException {
-        placeDAO = new PlaceDAOImpl();
+        placeDAO = new PlaceDAO();
     }
 
 //    @Override
