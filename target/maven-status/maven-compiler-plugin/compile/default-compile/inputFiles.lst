@@ -1,0 +1,8 @@
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/models/Place.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/dao/impl/PlaceDAOImpl.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/dao/PlaceDAO.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/servlets/PlaceServlet.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/servlets/PlaceDelete.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/servlets/MainServlet.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/connection/DBConnection.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/servlets/PlaceEdit.java

@@ -1,7 +1,6 @@
 package com.randomplace.servlets;
 
 import com.randomplace.dao.impl.PlaceDAOImpl;
-import com.randomplace.models.Place;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       req.getRequestDispatcher("WEB-INF/views/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/index.jsp").forward(req, resp);
     }
 
     @Override

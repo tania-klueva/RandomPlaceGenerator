@@ -1,0 +1,8 @@
+com/randomplace/servlets/PlaceEdit.class
+com/randomplace/connection/DBConnection.class
+com/randomplace/dao/PlaceDAO.class
+com/randomplace/models/Place.class
+com/randomplace/servlets/PlaceDelete.class
+com/randomplace/servlets/PlaceServlet.class
+com/randomplace/servlets/MainServlet.class
+com/randomplace/dao/impl/PlaceDAOImpl.class

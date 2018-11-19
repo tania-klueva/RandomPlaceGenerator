@@ -1,3 +1,241 @@
-.navbar{
-    background: url("../images/nav-background-wood.jpg");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Permanent+Marker');
+
+.text-blue {
+    color: #3eb1bc;
 }
+
+.border-blue{
+    border-color: #3eb1bc;
+}
+
+.text-graywhite {
+    color: rgba(240, 240, 240, .8)
+}
+
+.bg-light-custom {
+    background: #f0f0f0;
+}
+
+.bg-blue{
+    background: #3eb1bc;
+}
+
+.m-after-nav{
+    margin-top: 6rem;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*NAVIGATION*/
+/**/
+/**/
+.main-nav {
+    background: url("nav-background-wood.jpg") no-repeat center;
+    background-size: cover;
+    color: #ced4da;
+    transition: all 0.5s;
+    z-index: 5;
+}
+
+.main-nav a, .main-nav li, .main-nav button {
+    color: rgba(255, 255, 255, .8) !important;
+    z-index: 9999 !important;
+    opacity: 1;
+}
+
+.navbar .nav-link {
+    font-size: 1.2rem;
+    transition: all 0.5s;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.navbar .nav-link:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    border-bottom: 1px solid #ced4da;
+}
+
+.main-nav::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 110%;
+    width: 100%;
+    content: "";
+    background: #343a40;
+    transform-origin: top right;
+    transform: skewY(-2deg);
+    z-index: -1;
+    transition: all 0.5s;
+}
+
+.main-nav::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 150%;
+    width: 100%;
+    content: "";
+    background: inherit;
+    transform-origin: top right;
+    transform: skewY(-2deg);
+    transition: all 0.5s;
+    z-index: 10;
+}
+
+.navbar-brand {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 3.5rem;
+    letter-spacing: 0.8rem;
+
+    transition: all 0.5s;
+}
+
+
+/*INDEX*/
+/**/
+/**/
+.random-button-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.random-button {
+    height: 20rem;
+    width: 20rem;
+    background: #3eb1bc;
+    border: none;
+    border-radius: 50%;
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: snow;
+    transition: all .5s;
+}
+
+.random-button:hover {
+    /*background: #343a40;*/
+    /*border: 5px solid #38b69a;*/
+    /*color: #38b69a;*/
+    transform: scale(1.1);
+}
+
+.random-tip {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    font-size: 0.8rem;
+}
+
+/*PLACES*/
+/**/
+/**/
+/**/
+.add-new-place-button{
+    height: auto;
+    width: 100px;
+    text-align: center;
+    position: fixed;
+    top: 25%;
+    right: 0;
+    font-size: 0.8rem;
+}
+
+.custom-blue-button{
+    background: #3eb1bc;
+    color: snow;
+    border: 1px transparent solid;
+    transition: all .5s;
+}
+
+.custom-blue-button:hover{
+    background: #36939e;
+    border: 1px transparent solid;
+}
+
+/*PLACEPAGE*/
+/**/
+/**/
+/**/
+.place-crud-button a, .place-crud-button input {
+    display: block;
+    width: auto;
+    height: auto;
+    border: none;
+    border-top: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    padding: .5rem 2rem;
+}
+
+
+
+.place-crud-button a:hover {
+}
+
+.place-crud-button input:hover {
+    text-decoration: underline;
+    background: #dee2e6;
+}
+
+.desc-block {
+    position: relative;
+}
+
+.place-crud-button {
+    position: absolute;
+    right: 16px;
+    bottom: 0;
+}
+
+/*CREATEPLACE*/
+/**/
+/**/
+/**/
+
+
+.creation-form input:focus, .creation-form textarea:focus {
+    box-shadow: 0 0 3px 2px #3eb1bc;
+}
+
+
+
+/*FOOTER*/
+/**/
+/**/
+/**/
+.footer-contacts li {
+    padding: 0;
+    margin-bottom: 2rem;
+    list-style: none
+}
+
+footer {
+    border-top: 1px solid rgba(147, 147, 147, .4)
+}
+
+footer .copy {
+    border-top: 1px solid rgba(147, 147, 147, .4)
+}
+
+footer {
+    font-size: .8rem;
+    color: rgba(240, 240, 240, .8);
+}
+
+footer a, share a {
+    color: rgba(240, 240, 240, .8);
+}
+
+footer a:hover, share a:hover {
+    color: #38b69a;
+}
+
+.font-blue {
+    color: #38b69a;
+}
+
+

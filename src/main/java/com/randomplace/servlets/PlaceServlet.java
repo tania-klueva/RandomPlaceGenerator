@@ -23,11 +23,22 @@ public class PlaceServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Place> places = placeDAO.findAll();
-        if (places != null && places.size()>0){
-            req.setAttribute("places", places);
+        String id = req.getParameter("id");
+        if (id==null || id.isEmpty() ){
+            List<Place> places = placeDAO.findAll();
+            if (places != null && places.size()>0){
+                req.setAttribute("places", places);
+                req.getRequestDispatcher("/views/places.jsp").forward(req, resp);
+            }
+        } else{
+            Place place = placeDAO.findById(Integer.parseInt(id));
+            if (place !=null){
+                req.setAttribute("place", place);
+                req.getRequestDispatcher("views/place.jsp").forward(req, resp);
+            }
+
         }
-        req.getRequestDispatcher("WEB-INF/views/places.jsp").forward(req, resp);
+
     }
 
     @Override
