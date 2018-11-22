@@ -1,6 +1,7 @@
 package com.randomplace.service.validators;
 
 import com.randomplace.models.Place;
+import com.randomplace.service.image.ImageService;
 import com.randomplace.utils.errorMessages.PlaceValidationError;
 
 import java.util.List;
@@ -37,6 +38,9 @@ public class PlaceValidator implements Validator {
             }
             if (isNullOrEmpty(place.getDescription())){
                 errorMessages.add(PlaceValidationError.DESCRIPTION_EMPTY_ERROR.getErrorText());
+            }
+            if (isNullOrEmpty(place.getImagePath())){
+                place.setImagePath(ImageService.DEFAULT_FILE_NAME);
             }
         }
     }

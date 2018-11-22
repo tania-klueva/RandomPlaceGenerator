@@ -41,14 +41,15 @@
             <div class="form-group row">
                 <label for="place-create-about" class="col-sm-3 col-form-label">About</label>
                 <div class="col-sm-9">
-                    <textarea name="description" class="form-control" id="place-create-about" rows="3" placeholder="Enter smth about your place" required></textarea>
+                    <textarea name="description" class="form-control" id="place-create-about" rows="3"
+                              placeholder="Enter smth about your place" required></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="pFile" class="col-sm-3 col-form-label">Attach photo</label>
                 <div class="col-sm-9">
                     <input type="file" name="file" class="form-control file"
-                           id="pFile" value="" multiple data-show-upload="true" data-show-caption="true"  required>
+                           id="pFile" value="" accept="image/*" data-show-upload="true" data-show-caption="true">
                 </div>
             </div>
             <div class="form-group row">

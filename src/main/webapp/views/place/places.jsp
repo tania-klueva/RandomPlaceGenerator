@@ -6,6 +6,9 @@
     <main class="row">
         <a id="redColor" class="add-new-place-button text-dark border p-3 bg-light" href="/place/create">Add new
             place</a>
+        <c:forEach items="${errors}" var="error">
+            <p class="text-danger mx-auto">${error}</p>
+        </c:forEach>
         <c:forEach var="place" items="${places}">
             <div class="row w-100 border p-3 rounded m-3 bg-light">
                 <div class="col-md-5">

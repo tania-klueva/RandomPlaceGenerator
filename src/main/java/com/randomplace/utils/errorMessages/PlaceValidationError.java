@@ -9,7 +9,9 @@ public enum PlaceValidationError {
     ADDRESS_EMPTY_ERROR("Please write address"),
     DESCRIPTION_EMPTY_ERROR("Please write some information about your place"),
     WRONG_PAGE("Wrong page number"),
-    WRONG_COUNT("Wrong number of items per page. It should be from 15 to 90")
+    WRONG_COUNT("Wrong number of items per page. It should be from 15 to 90"),
+    NO_PLACES_IN_DB("There are no places"),
+    FILE_ERROR("Wrong image extension")
     ;
 
     private String errorText;

@@ -2,8 +2,8 @@ package com.randomplace.servlets.place;
 
 import com.randomplace.models.Place;
 import com.randomplace.models.User;
+import com.randomplace.service.image.ImageService;
 import com.randomplace.service.place.impl.PlaceService;
-import com.randomplace.utils.FileUtils;
 import com.randomplace.utils.PagePath;
 
 import javax.servlet.ServletException;
@@ -26,13 +26,13 @@ import java.util.List;
 public class PlaceCreate extends HttpServlet {
 
 
-    private FileUtils fileUtils;
+    private ImageService imageService;
     PlaceService placeService;
 
     @Override
     public void init() throws ServletException {
         placeService = PlaceService.getOurInstance();
-        fileUtils = FileUtils.getInstance();
+        imageService = ImageService.getInstance();
     }
 
     @Override
@@ -52,11 +52,11 @@ public class PlaceCreate extends HttpServlet {
         Part file = req.getPart("file");
         User user = new User();
         user.setId(1);
-        String fileName = fileUtils.writeFile(file);
-        if (fileName != null || !fileName.isEmpty()) {
-            place.setImagePath(fileName);
+        String fileName = imageService.writeFile(file, errorList);
+        if (fileName == null || fileName.isEmpty()) {
+            place.setImagePath(ImageService.DEFAULT_FILE_NAME);
         } else {
-            place.setImagePath(FileUtils.DEFAULT_FILE_NAME);
+            place.setImagePath(fileName);
         }
         place.setUser(user);
         placeService.save(place, errorList);
@@ -66,23 +66,6 @@ public class PlaceCreate extends HttpServlet {
             req.setAttribute("errors", errorList);
             doGet(req, resp);
         }
-//        try {
-//            Files.createDirectory(Paths.get(System.getProperty("user.dir")+File.separator + "storage"));
-//        } catch (Exception e) {
-//        }
-//        String fileName = fileUtils.createFileName(filePart);
-//        InputStream fileContent = filePart.getInputStream();
-//        byte[] buffer = new byte[fileContent.available()];
-//        fileContent.read(buffer);
-//        File targetFile = new File("storage/" + fileName);
-//        System.out.println(targetFile.getAbsolutePath());
-//        OutputStream outStream = new FileOutputStream(targetFile);
-//        outStream.write(buffer);
-//        outStream.close();
-
-        /////////////////
-        /////////////
-        //SAVE ONLY IF  FALE WAS SAVED, pAY ATTENTION PLS
     }
 
 }
