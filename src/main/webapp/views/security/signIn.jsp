@@ -4,18 +4,21 @@
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Sign in</h1>
     <div class="">
-        <form method="post" action="j_security_check" enctype="multipart/form-data" class="creation-form">
+        <c:forEach items="${errors}" var="error">
+            <p class="text-danger offset-sm-3">${error}</p>
+        </c:forEach>
+        <form method="post" action="/signin" class="creation-form">
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">E-mail</label>
                 <div class="col-sm-9">
-                    <input type="email" name="j_username" class="form-control"
+                    <input type="email" name="email" class="form-control"
                            id="email" value="" placeholder="Enter your email" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
-                    <input type="password" name="j_password" class="form-control"
+                    <input type="password" name="password" class="form-control"
                            id="password" value=""
                            placeholder="Enter password" required>
                 </div>
@@ -26,6 +29,7 @@
                 </div>
             </div>
         </form>
+        <a href="/signup">Have no account yet?</a>
     </div>
 </div>
 <jsp:include page="../../WEB-INF/footer.jsp"/>

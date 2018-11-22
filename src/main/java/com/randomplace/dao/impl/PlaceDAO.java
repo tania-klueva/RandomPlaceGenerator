@@ -14,11 +14,19 @@ import java.util.List;
 
 public class PlaceDAO implements IPlaceDAO {
 
+
+    private static PlaceDAO ourInstance = new PlaceDAO();
+
     private Connection connection;
 
-    public PlaceDAO() {
+    public static PlaceDAO getOurInstance() {
+        return ourInstance;
+    }
+
+    private PlaceDAO() {
         this.connection = DBConnection.getConnection();
     }
+
 
     public void save(Place place) {
         try {
@@ -132,7 +140,7 @@ public class PlaceDAO implements IPlaceDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places ORDER BY ? LIMIT ? OFFSET ?");
             preparedStatement.setString(1, fieldToSortBy);
             preparedStatement.setInt(2, count);
-            preparedStatement.setInt(3, (count*(page-1))+1);
+            preparedStatement.setInt(3, (count * (page - 1)) + 1);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Place place = new Place();

@@ -4,6 +4,9 @@
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Sign up</h1>
     <div class="">
+            <c:forEach items="${errors}" var="error">
+                <p class="text-danger offset-sm-3">${error}</p>
+            </c:forEach>
         <form method="post" action="<c:url value="/signup"/>" class="creation-form">
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">E-mail</label>
@@ -44,9 +47,9 @@
             </div>
             <div class="form-group row">
                 <label for="city" class="col-sm-3 col-form-label">City</label>
-                <input type="text" name="city" class="form-control"
-                       id="city" value="" placeholder="Enter your city" required>
                 <div class="col-sm-9">
+                    <input type="text" name="city" class="form-control"
+                           id="city" value="" placeholder="Enter your city" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -55,6 +58,7 @@
                 </div>
             </div>
         </form>
+        <a href="/signin">Already have an account</a>
     </div>
 </div>
 <jsp:include page="../../WEB-INF/footer.jsp"/>

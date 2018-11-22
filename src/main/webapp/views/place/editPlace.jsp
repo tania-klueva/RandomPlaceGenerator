@@ -4,6 +4,9 @@
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Add new place</h1>
     <div class="">
+        <c:forEach items="${errors}" var="error">
+            <p class="text-danger offset-sm-3">${error}</p>
+        </c:forEach>
         <form method="post" action="/place/edit" enctype="multipart/form-data" class="creation-form">
             <input type="hidden" name="id" value="${place.id}">
             <input type="hidden" name="imagePath" value="${place.imagePath}">

@@ -13,9 +13,15 @@ import java.util.List;
 
 public class UserDAO implements IUserDAO {
 
+    private static UserDAO ourInstance = new UserDAO();
+
     private Connection connection;
 
-    public UserDAO() {
+    public static UserDAO getOurInstance() {
+        return ourInstance;
+    }
+
+    private UserDAO() {
         this.connection = DBConnection.getConnection();
     }
 

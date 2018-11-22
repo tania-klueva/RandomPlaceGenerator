@@ -4,8 +4,8 @@ import com.randomplace.dao.impl.UserDAO;
 import com.randomplace.models.User;
 import com.randomplace.service.user.IUserService;
 import com.randomplace.service.validators.UserValidator;
-import com.randomplace.utils.errorMessages.LoginError;
 import com.randomplace.utils.PasswordEncoder;
+import com.randomplace.utils.errorMessages.LoginError;
 import com.randomplace.utils.errorMessages.UserValidationError;
 
 import java.util.List;
@@ -16,10 +16,17 @@ public class UserService implements IUserService {
     private UserValidator userValidator;
     private PasswordEncoder passwordEncoder;
 
-    public UserService() {
-        this.userValidator = new UserValidator();
-        this.userDAO = new UserDAO();
-        this.passwordEncoder = new PasswordEncoder();
+    private static UserService ourInstance = new UserService();
+
+
+    public static UserService getOurInstance() {
+        return ourInstance;
+    }
+
+    private UserService() {
+        this.userValidator = UserValidator.getOurInstance();
+        this.userDAO = UserDAO.getOurInstance();
+        this.passwordEncoder = PasswordEncoder.getOurInstance();
     }
 
 
@@ -41,7 +48,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findByEmail(String email, List<String> errorList){
+    public User findByEmail(String email, List<String> errorList) {
         if (userValidator.isNullOrEmpty(email)) {
             errorList.add(UserValidationError.EMAIL_EMPTY_ERROR.getErrorText());
         } else {
@@ -61,14 +68,20 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findById(int id, List<String> errorList){
-        if (id <= 0) {
+    public User findById(String id, List<String> errorList) {
+        if (userValidator.isNullOrEmpty(id)) {
             errorList.add(UserValidationError.ID_ERROR.getErrorText());
         } else {
-            return userDAO.findById(id);
+            int parseInt = Integer.parseInt(id);
+            if (parseInt <= 0) {
+                errorList.add(UserValidationError.ID_ERROR.getErrorText());
+            } else {
+                return userDAO.findById(parseInt);
+            }
         }
         return null;
     }
+
 
     @Override
     public List<User> findAll() {
@@ -86,14 +99,14 @@ public class UserService implements IUserService {
 
     @Override
     public void updatePassword(User user, String oldPassword, String newPassword, String confirmPassword, List<String> errorList) {
-        if(userValidator.isNullOrEmpty(oldPassword) || userValidator.isNullOrEmpty(newPassword) || userValidator.isNullOrEmpty(confirmPassword)){
+        if (userValidator.isNullOrEmpty(oldPassword) || userValidator.isNullOrEmpty(newPassword) || userValidator.isNullOrEmpty(confirmPassword)) {
             errorList.add(UserValidationError.PASSWORD_EMPTY_ERROR.getErrorText());
-        }else{
+        } else {
             if (!passwordEncoder.isMatches(oldPassword, user.getPassword())) {
                 errorList.add(LoginError.PASSWORD_ERROR.getErrorText());
-            }else{
+            } else {
                 userValidator.validatePasswords(newPassword, confirmPassword, errorList);
-                if (errorList.isEmpty()){
+                if (errorList.isEmpty()) {
                     user.setPassword(newPassword);
                     passwordEncoder.encodePassword(user);
                     userDAO.updatePassword(user);
@@ -104,12 +117,18 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void deleteById(int id, List<String> errorList){
-        if (id <= 0) {
+    public void deleteById(String id, List<String> errorList) {
+        if (userValidator.isNullOrEmpty(id)) {
             errorList.add(UserValidationError.ID_ERROR.getErrorText());
         } else {
-            userDAO.deleteById(id);
+            int parseInt = Integer.parseInt(id);
+            if (parseInt <= 0) {
+                errorList.add(UserValidationError.ID_ERROR.getErrorText());
+            } else {
+                userDAO.deleteById(parseInt);
+            }
         }
+
     }
 
 }

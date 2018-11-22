@@ -4,6 +4,9 @@
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Add new place</h1>
     <div class="">
+        <c:forEach items="${errors}" var="error">
+            <p class="text-danger offset-sm-3">${error}</p>
+        </c:forEach>
         <form method="post" action="/place/create" enctype="multipart/form-data" class="creation-form">
             <input type="hidden" value="${place.id}">
             <div class="form-group row">
@@ -45,7 +48,7 @@
                 <label for="pFile" class="col-sm-3 col-form-label">Attach photo</label>
                 <div class="col-sm-9">
                     <input type="file" name="file" class="form-control file"
-                           id="pFile" value=""  multiple data-show-upload="true" data-show-caption="true"  required>
+                           id="pFile" value="" multiple data-show-upload="true" data-show-caption="true"  required>
                 </div>
             </div>
             <div class="form-group row">

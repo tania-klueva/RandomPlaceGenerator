@@ -13,10 +13,16 @@ public class PlaceService implements IPlaceService {
 
     private PlaceDAO placeDAO;
     private PlaceValidator validator;
+    private static PlaceService ourInstance = new PlaceService();
 
-    public PlaceService() {
-        this.placeDAO = new PlaceDAO();
-        validator = new PlaceValidator();
+
+    public static PlaceService getOurInstance() {
+        return ourInstance;
+    }
+
+    private PlaceService() {
+        placeDAO = PlaceDAO.getOurInstance();
+        validator = PlaceValidator.getOurInstance();
     }
 
     @Override
@@ -28,11 +34,16 @@ public class PlaceService implements IPlaceService {
     }
 
     @Override
-    public Place findById(int id, List<String> errorList) {
-        if (id <= 0) {
+    public Place findById(String id, List<String> errorList) {
+        if (validator.isNullOrEmpty(id)) {
             errorList.add(PlaceValidationError.ID_ERROR.getErrorText());
         } else {
-            return placeDAO.findById(id);
+            int parseInt = Integer.parseInt(id);
+            if (parseInt <= 0) {
+                errorList.add(PlaceValidationError.ID_ERROR.getErrorText());
+            } else {
+                return placeDAO.findById(parseInt);
+            }
         }
         return null;
     }
@@ -53,15 +64,25 @@ public class PlaceService implements IPlaceService {
     }
 
     @Override
-    public List<Place> findAllByPage(int page, int count, PlaceSortingField field, List<String> errorList) {
-        if (page <= 0) {
+    public List<Place> findAllByPage(String pageString, String countString, PlaceSortingField field, List<String> errorList) {
+        if (validator.isNullOrEmpty(pageString)) {
             errorList.add(PlaceValidationError.WRONG_PAGE.getErrorText());
         }
-        if (count < 15 || count > 90) {
+        if (validator.isNullOrEmpty(countString)) {
             errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
-        } else {
-            if (errorList.isEmpty()){
-                return placeDAO.findAllForPages(page, count, field.getFieldName());
+        }
+        if (errorList.isEmpty()) {
+            int page = Integer.parseInt(pageString);
+            int count = Integer.parseInt(countString);
+            if (page <= 0) {
+                errorList.add(PlaceValidationError.WRONG_PAGE.getErrorText());
+            }
+            if (count < 15 || count > 90) {
+                errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
+            } else {
+                if (errorList.isEmpty()) {
+                    return placeDAO.findAllForPages(page, count, field.getFieldName());
+                }
             }
         }
         return null;
@@ -76,12 +97,18 @@ public class PlaceService implements IPlaceService {
     }
 
     @Override
-    public void deleteById(int id, List<String> errorList) {
-        if (id <= 0) {
+    public void deleteById(String id, List<String> errorList) {
+        if (validator.isNullOrEmpty(id)) {
             errorList.add(PlaceValidationError.ID_ERROR.getErrorText());
         } else {
-            placeDAO.deleteById(id);
+            int parseInt = Integer.parseInt(id);
+            if (parseInt <= 0) {
+                errorList.add(PlaceValidationError.ID_ERROR.getErrorText());
+            } else {
+                placeDAO.deleteById(parseInt);
+            }
         }
+
     }
 
 }

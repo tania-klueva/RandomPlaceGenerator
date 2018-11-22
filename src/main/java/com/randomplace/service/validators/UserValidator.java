@@ -6,6 +6,15 @@ import com.randomplace.utils.errorMessages.UserValidationError;
 import java.util.List;
 
 public class UserValidator implements Validator{
+    private static UserValidator ourInstance = new UserValidator();
+
+
+    public static UserValidator getOurInstance() {
+        return ourInstance;
+    }
+
+    private UserValidator() {
+    }
 
     @Override
     public void validate(List<String> errorMessages, Object object) {

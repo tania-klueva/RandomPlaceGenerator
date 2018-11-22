@@ -6,6 +6,15 @@ import com.randomplace.utils.errorMessages.PlaceValidationError;
 import java.util.List;
 
 public class PlaceValidator implements Validator {
+    private static PlaceValidator ourInstance = new PlaceValidator();
+
+
+    public static PlaceValidator getOurInstance() {
+        return ourInstance;
+    }
+
+    private PlaceValidator() {
+    }
 
 
     @Override
@@ -31,6 +40,7 @@ public class PlaceValidator implements Validator {
             }
         }
     }
+
 
     @Override
     public boolean isNullOrEmpty(String field) {

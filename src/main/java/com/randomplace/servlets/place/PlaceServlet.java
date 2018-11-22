@@ -18,7 +18,7 @@ public class PlaceServlet extends HttpServlet{
 
     @Override
     public void init() throws ServletException {
-        placeDAO = new PlaceDAO();
+        placeDAO = PlaceDAO.getOurInstance();
     }
 
     @Override

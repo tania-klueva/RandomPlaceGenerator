@@ -30,5 +30,16 @@
                 <a class="nav-link mx-5" href="/place">Places</a>
             </li>
         </ul>
+       <c:if test="${user == null}">
+           <a class="btn-light-outline" href="/signin">Sign in</a>
+       </c:if>
+        <c:if test="${user != null}">
+            <c:if test="${user.getRole == Role.USER}">
+                <a class="btn-light-outline" href="/user/page">Profile</a>
+            </c:if>
+            <c:if test="${user.getRole == Role.USER}">
+                <a class="btn-light-outline" href="/admin/page">Profile</a>
+            </c:if>
+        </c:if>
     </div>
 </nav>

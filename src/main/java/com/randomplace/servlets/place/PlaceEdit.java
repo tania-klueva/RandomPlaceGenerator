@@ -18,7 +18,7 @@ public class PlaceEdit extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        placeDAO = new PlaceDAO();
+        placeDAO = PlaceDAO.getOurInstance();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PlaceEdit extends HttpServlet {
         }
         if (place != null) {
             req.setAttribute("place", place);
-            req.getRequestDispatcher("/views/place/editPlace.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/place/EDIT_PLACE.jsp").forward(req, resp);
         }else {
             resp.sendError(404);
         }
