@@ -1,4 +1,4 @@
-package com.randomplace.servlets.user;
+package com.randomplace.servlets.login;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

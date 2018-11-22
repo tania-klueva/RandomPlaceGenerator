@@ -9,6 +9,7 @@ public interface IPlaceDAO {
     Place findById(int id);
     Place findBySpecification(String specification);
     List<Place> findAll();
+    List<Place> findAllForPages(int page, int count, String fieldToSortBy);
     void update(Place place);
     void deleteById(int id);
 }

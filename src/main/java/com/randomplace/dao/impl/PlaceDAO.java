@@ -125,6 +125,33 @@ public class PlaceDAO implements IPlaceDAO {
         return null;
     }
 
+    @Override
+    public List<Place> findAllForPages(int page, int count, String fieldToSortBy) {
+        try {
+            List<Place> places = new ArrayList<>();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places ORDER BY ? LIMIT ? OFFSET ?");
+            preparedStatement.setString(1, fieldToSortBy);
+            preparedStatement.setInt(2, count);
+            preparedStatement.setInt(3, (count*(page-1))+1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Place place = new Place();
+                place.setId(resultSet.getInt(1));
+                place.setName(resultSet.getString(2));
+                place.setSpecification(resultSet.getString(3));
+                place.setCity(resultSet.getString(4));
+                place.setAddress(resultSet.getString(5));
+                place.setDescription(resultSet.getString(6));
+                place.setImagePath(resultSet.getString(7));
+                places.add(place);
+            }
+            return places;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void update(Place place) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Places SET "
@@ -148,6 +175,7 @@ public class PlaceDAO implements IPlaceDAO {
             e.printStackTrace();
         }
     }
+
 
     public void deleteById(int id) {
         try {

@@ -7,7 +7,9 @@ public enum PlaceValidationError {
     SPECIFICATION_EMPTY_ERROR("Please write a specification"),
     CITY_EMPTY_ERROR("Please write location."),
     ADDRESS_EMPTY_ERROR("Please write address"),
-    DESCRIPTION_EMPTY_ERROR("Please write some information about your place")
+    DESCRIPTION_EMPTY_ERROR("Please write some information about your place"),
+    WRONG_PAGE("Wrong page number"),
+    WRONG_COUNT("Wrong number of items per page. It should be from 15 to 90")
     ;
 
     private String errorText;
