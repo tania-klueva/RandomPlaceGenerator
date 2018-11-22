@@ -8,4 +8,3 @@
 <div class="random-tip border p-3">
     <p>Please click the button to randomize place where to eat</p>
 </div>
-<jsp:include page="../WEB-INF/footer.jsp"/>

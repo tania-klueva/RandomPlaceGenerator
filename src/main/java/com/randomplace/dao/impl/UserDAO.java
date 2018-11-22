@@ -127,17 +127,31 @@ public class UserDAO implements IUserDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET "
                     + "email = ?, "
-                    + "password = ?, "
                     + "firstname = ?, "
                     + "lastname =  ?, "
                     + "city = ? "
                     + "WHERE id = ?");
             preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getFirstName());
-            preparedStatement.setString(4, user.getLastName());
-            preparedStatement.setString(5, user.getCity());
-            preparedStatement.setInt(6, user.getId());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, user.getCity());
+            preparedStatement.setInt(5, user.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void updatePassword(User user) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Users SET "
+                    + "password = ? "
+                    + "WHERE id = ?");
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setInt(2, user.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

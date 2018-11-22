@@ -52,7 +52,11 @@
             <version>1.2</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>de.svenkubiak</groupId>
+            <artifactId>jBCrypt</artifactId>
+            <version>0.4.1</version>
+        </dependency>
 
     </dependencies>
 
@@ -77,8 +81,6 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 
 </project>

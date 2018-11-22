@@ -11,6 +11,7 @@ public interface IUserDAO {
     User findById(int id);
     List<User> findAll();
     void update(User user);
+    void updatePassword(User user);
     void deleteById(int id);
 
 }

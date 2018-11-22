@@ -36,7 +36,7 @@ function scrollFunction() {
 
         }
         for (let i = 0; i < brand.length; i++) {
-            brand[i].style.fontSize = "2.5rem";
+            brand[i].style.fontSize = "2.2rem";
 
         }
 
@@ -49,7 +49,7 @@ function scrollFunction() {
 
         }
         for (let i = 0; i < brand.length; i++) {
-            brand[i].style.fontSize = "3.5rem";
+            brand[i].style.fontSize = "3rem";
 
         }
     }

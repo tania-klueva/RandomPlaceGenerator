@@ -12,12 +12,6 @@ import java.io.IOException;
 @WebServlet("/")
 public class MainServlet extends HttpServlet {
 
-    private PlaceDAO placeDAO;
-
-    @Override
-    public void init() throws ServletException {
-        placeDAO = new PlaceDAO();
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

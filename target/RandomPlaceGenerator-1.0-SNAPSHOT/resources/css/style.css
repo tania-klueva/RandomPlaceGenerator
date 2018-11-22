@@ -32,8 +32,8 @@ body {
 /**/
 /**/
 .main-nav {
-    background: url("nav-background-wood.jpg") no-repeat center;
-    background-size: cover;
+    background: url(nav-background-wood.jpg) repeat center;
+    background-size: contain;
     color: #ced4da;
     transition: all 0.5s;
     z-index: 5;
@@ -49,12 +49,13 @@ body {
     font-size: 1.2rem;
     transition: all 0.5s;
     font-weight: 500;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
 }
 
 .navbar .nav-link:hover {
-    color: rgba(255, 255, 255, 1) !important;
-    border-bottom: 1px solid #ced4da;
+    color: rgba(255, 255, 255, 1)!important;
+    border-bottom: 3px solid #3eb1bc;
+    transform: scale(1.1);
 }
 
 .main-nav::before {
@@ -87,9 +88,8 @@ body {
 
 .navbar-brand {
     font-family: 'Permanent Marker', cursive;
-    font-size: 3.5rem;
+    font-size: 3rem;
     letter-spacing: 0.8rem;
-
     transition: all 0.5s;
 }
 
@@ -105,21 +105,21 @@ body {
 }
 
 .random-button {
-    height: 20rem;
-    width: 20rem;
+    display: block;
+    height: 15rem;
+    width: 15rem;
     background: #3eb1bc;
     border: none;
     border-radius: 50%;
-    font-size: 2.7rem;
+    font-size: 2.3rem;
     font-weight: 700;
     color: snow;
     transition: all .5s;
 }
 
 .random-button:hover {
-    /*background: #343a40;*/
-    /*border: 5px solid #38b69a;*/
-    /*color: #38b69a;*/
+    color: snow;
+    text-decoration: none;
     transform: scale(1.1);
 }
 
@@ -231,11 +231,11 @@ footer a, share a {
 }
 
 footer a:hover, share a:hover {
-    color: #38b69a;
+    color: #3eb1bc;
 }
 
 .font-blue {
-    color: #38b69a;
+    color: #3eb1bc;
 }
 
 

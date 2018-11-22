@@ -133,17 +133,15 @@ public class PlaceDAO implements IPlaceDAO {
                     + "city = ?, "
                     + "address =  ?, "
                     + "description = ?, "
-                    + "imagePath = ? ,"
-                    + "userId = ? "
+                    + "imagePath = ? "
                     + "WHERE id = ?");
             preparedStatement.setString(1, place.getName());
             preparedStatement.setString(2, place.getSpecification());
             preparedStatement.setString(3, place.getCity());
             preparedStatement.setString(4, place.getAddress());
             preparedStatement.setString(5, place.getDescription());
-            preparedStatement.setString(5, place.getImagePath());
-            preparedStatement.setInt(7, place.getUser().getId());
-            preparedStatement.setInt(8, place.getId());
+            preparedStatement.setString(6, place.getImagePath());
+            preparedStatement.setInt(7, place.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

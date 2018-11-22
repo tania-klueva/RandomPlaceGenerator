@@ -10,7 +10,7 @@ public class Place {
     private String city;
     private String address;
     private String description;
-    private String imagePath;
+    private String imagePath = "default.jpg";
     private User user;
 
     public Place() {

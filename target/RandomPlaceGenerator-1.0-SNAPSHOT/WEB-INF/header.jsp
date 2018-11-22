@@ -11,15 +11,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
-    <title>Admin</title>
+    <title>Just eat it!</title>
 </head>
-<body class="bg-light-custom font-weight-light text-dark ">
-<nav class="main-nav navbar fixed-top navbar-expand-lg navbar-dark px-3 py-1" id="navbar">
+<body id="start" class="bg-light-custom font-weight-light text-dark ">
+<nav class="main-nav bg-dark navbar fixed-top navbar-expand-lg navbar-dark px-3 py-1" id="navbar">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" id="navbar-brand" href="#">Eater</a>
+    <a class="navbar-brand" id="navbar-brand" href="#"><span class="text-blue">E</span>ater</a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
