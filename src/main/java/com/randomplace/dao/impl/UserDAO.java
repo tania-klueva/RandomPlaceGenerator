@@ -17,12 +17,12 @@ public class UserDAO implements IUserDAO {
 
     private Connection connection;
 
-    public static UserDAO getOurInstance() {
-        return ourInstance;
-    }
-
     private UserDAO() {
         this.connection = DBConnection.getConnection();
+    }
+
+    public static UserDAO getOurInstance() {
+        return ourInstance;
     }
 
     @Override

@@ -26,8 +26,8 @@ import java.util.List;
 public class PlaceCreate extends HttpServlet {
 
 
-    private ImageService imageService;
     PlaceService placeService;
+    private ImageService imageService;
 
     @Override
     public void init() throws ServletException {

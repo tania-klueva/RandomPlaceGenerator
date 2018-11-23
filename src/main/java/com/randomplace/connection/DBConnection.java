@@ -9,14 +9,6 @@ public class DBConnection {
 
     private static DBConnection ourInstance = new DBConnection();
 
-    public static DBConnection getInstance() {
-        return ourInstance;
-    }
-
-    public static Connection getConnection() {
-        return connection;
-    }
-
     private DBConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -24,6 +16,14 @@ public class DBConnection {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static DBConnection getInstance() {
+        return ourInstance;
+    }
+
+    public static Connection getConnection() {
+        return connection;
     }
 }
 

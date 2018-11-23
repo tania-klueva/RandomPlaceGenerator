@@ -10,44 +10,39 @@ public class PlaceValidator implements Validator {
     private static PlaceValidator ourInstance = new PlaceValidator();
 
 
+    private PlaceValidator() {
+    }
+
     public static PlaceValidator getOurInstance() {
         return ourInstance;
     }
 
-    private PlaceValidator() {
-    }
-
-
     @Override
     public void validate(List<String> errorMessages, Object object) {
         Place place = (Place) object;
-        if (place == null){
+        if (place == null) {
             errorMessages.add(PlaceValidationError.PLACE_NULL.getErrorText());
-        }else{
-            if (isNullOrEmpty(place.getName())){
+        } else {
+            if (Validator.isNullOrEmpty(place.getName())) {
                 errorMessages.add(PlaceValidationError.NAME_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(place.getSpecification())){
+            if (Validator.isNullOrEmpty(place.getSpecification())) {
                 errorMessages.add(PlaceValidationError.SPECIFICATION_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(place.getCity())){
+            if (Validator.isNullOrEmpty(place.getCity())) {
                 errorMessages.add(PlaceValidationError.CITY_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(place.getAddress())){
+            if (Validator.isNullOrEmpty(place.getAddress())) {
                 errorMessages.add(PlaceValidationError.ADDRESS_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(place.getDescription())){
+            if (Validator.isNullOrEmpty(place.getDescription())) {
                 errorMessages.add(PlaceValidationError.DESCRIPTION_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(place.getImagePath())){
+            if (Validator.isNullOrEmpty(place.getImagePath())) {
                 place.setImagePath(ImageService.DEFAULT_FILE_NAME);
             }
         }
     }
 
 
-    @Override
-    public boolean isNullOrEmpty(String field) {
-        return field == null || field.isEmpty();
-    }
 }

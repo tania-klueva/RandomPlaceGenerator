@@ -9,9 +9,7 @@ public enum UserValidationError {
     PASSWORD_LENGTH_ERROR("Password should be from 6 to 20 symbs."),
     PASSWORD_EMPTY_ERROR("Please write password."),
     NAME_EMPTY_ERROR("Please write your name."),
-    CITY_EMPTY_ERROR("Please write city where you live.")
-
-    ;
+    CITY_EMPTY_ERROR("Please write city where you live.");
 
     private String errorText;
 

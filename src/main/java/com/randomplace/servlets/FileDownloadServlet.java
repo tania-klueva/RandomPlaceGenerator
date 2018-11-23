@@ -23,7 +23,7 @@ public class FileDownloadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fileName = req.getParameter("fileName");
         byte[] file = imageService.getFile(fileName);
-        if (file == null){
+        if (file == null) {
             file = imageService.getFile(ImageService.DEFAULT_FILE_NAME);
         }
         resp.getOutputStream().write(file);

@@ -10,17 +10,17 @@ import java.util.List;
 import java.util.UUID;
 
 public class ImageService {
-    private static ImageService ourInstance = new ImageService();
     public static final String PATH = System.getProperty("user.dir") + File.separator + "storage" + File.separator;
     public static final String DEFAULT_FILE_NAME = "default.jpg";
+    private static ImageService ourInstance = new ImageService();
     private ImageValidator validator;
-
-    public static ImageService getInstance() {
-        return ourInstance;
-    }
 
     private ImageService() {
         validator = ImageValidator.getOurInstance();
+    }
+
+    public static ImageService getInstance() {
+        return ourInstance;
     }
 
     public String getContentType(Part file) {

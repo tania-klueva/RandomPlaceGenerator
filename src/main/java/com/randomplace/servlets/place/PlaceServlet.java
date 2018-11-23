@@ -2,7 +2,9 @@ package com.randomplace.servlets.place;
 
 import com.randomplace.models.Place;
 import com.randomplace.service.place.impl.PlaceService;
+import com.randomplace.service.validators.Validator;
 import com.randomplace.utils.PagePath;
+import com.randomplace.utils.PlaceSortingField;
 import com.randomplace.utils.errorMessages.PlaceValidationError;
 
 import javax.servlet.ServletException;
@@ -29,26 +31,43 @@ public class PlaceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> errorList = new ArrayList<>();
         String id = req.getParameter("id");
-        if (id == null || id.isEmpty()) {
-            List<Place> places = placeService.findAll();
-            if (places != null && !places.isEmpty()) {
-                req.setAttribute("places", places);
+        if (Validator.isNullOrEmpty(id)) {
+            String page = req.getParameter("page");
+            String items = req.getParameter("items");
+            if (Validator.isNullOrEmpty(page) || Validator.isNullOrEmpty(items)) {
+                page = "1";
+                items = "20";
+            }
+            int numberOfPages = placeService.countNumberOfPages(items, errorList);
+            List<Place> allByPage = placeService.findAllByPage(page, items, PlaceSortingField.ID, errorList);
+            if (allByPage != null && !allByPage.isEmpty()) {
+                req.setAttribute("places", allByPage);
+                req.setAttribute("page", page);
+                req.setAttribute("numberOfPages", numberOfPages);
                 req.getRequestDispatcher(PagePath.PLACE_LIST).forward(req, resp);
             } else {
                 errorList.add(PlaceValidationError.NO_PLACES_IN_DB.getErrorText());
             }
+
+//            List<Place> places = placeService.findAll();
+//            if (places != null && !places.isEmpty()) {
+//                req.setAttribute("places", places);
+//                req.getRequestDispatcher(PagePath.PLACE_LIST).forward(req, resp);
+//            } else {
+//                errorList.add(PlaceValidationError.NO_PLACES_IN_DB.getErrorText());
+//            }
         } else {
             Place place = placeService.findById(id, errorList);
             if (errorList.isEmpty()) {
                 if (place != null) {
                     req.setAttribute("place", place);
                     req.getRequestDispatcher(PagePath.PLACE_PAGE).forward(req, resp);
-                }else{
+                } else {
                     resp.sendError(404);
                 }
             }
         }
-        if (!errorList.isEmpty()){
+        if (!errorList.isEmpty()) {
             req.setAttribute("errors", errorList);
             req.getRequestDispatcher(PagePath.PLACE_LIST).forward(req, resp);
         }

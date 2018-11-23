@@ -39,7 +39,7 @@ public class PlaceDelete extends HttpServlet {
         imageService.deleteFile(place.getImagePath());
         if (errorList.isEmpty()) {
             resp.sendRedirect("/place");
-        }else{
+        } else {
             resp.sendError(404);
         }
 

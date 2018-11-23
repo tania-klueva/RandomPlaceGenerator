@@ -10,19 +10,17 @@ import java.util.List;
 public class LoginService {
 
     private static LoginService ourInstance = new LoginService();
-
-    public static LoginService getInstance() {
-        return ourInstance;
-    }
+    private UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     private LoginService() {
         this.userService = UserService.getOurInstance();
         this.passwordEncoder = PasswordEncoder.getOurInstance();
     }
 
-    private UserService userService;
-    private PasswordEncoder passwordEncoder;
-
+    public static LoginService getInstance() {
+        return ourInstance;
+    }
 
     public User login(String email, String password, List<String> errorList) {
         User user = null;

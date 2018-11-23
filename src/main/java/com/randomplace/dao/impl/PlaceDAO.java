@@ -19,14 +19,13 @@ public class PlaceDAO implements IPlaceDAO {
 
     private Connection connection;
 
-    public static PlaceDAO getOurInstance() {
-        return ourInstance;
-    }
-
     private PlaceDAO() {
         this.connection = DBConnection.getConnection();
     }
 
+    public static PlaceDAO getOurInstance() {
+        return ourInstance;
+    }
 
     public void save(Place place) {
         try {
@@ -95,8 +94,8 @@ public class PlaceDAO implements IPlaceDAO {
         return null;
     }
 
+    @Override
     public int getMaxId() {
-
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id) from Places ");
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -193,5 +192,19 @@ public class PlaceDAO implements IPlaceDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public int countRecords() {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(id) from Places ");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

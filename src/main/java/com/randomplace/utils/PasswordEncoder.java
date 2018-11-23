@@ -7,11 +7,11 @@ public class PasswordEncoder {
 
     private static PasswordEncoder ourInstance = new PasswordEncoder();
 
-    public static PasswordEncoder getOurInstance() {
-        return ourInstance;
+    private PasswordEncoder() {
     }
 
-    private PasswordEncoder() {
+    public static PasswordEncoder getOurInstance() {
+        return ourInstance;
     }
 
     public void encodePassword(User user) {

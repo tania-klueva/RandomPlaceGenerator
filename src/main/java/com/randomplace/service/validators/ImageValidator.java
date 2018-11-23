@@ -2,7 +2,6 @@ package com.randomplace.service.validators;
 
 import com.randomplace.utils.errorMessages.PlaceValidationError;
 
-import javax.servlet.http.Part;
 import java.util.List;
 
 public class ImageValidator implements Validator {
@@ -10,11 +9,11 @@ public class ImageValidator implements Validator {
     private static ImageValidator ourInstance = new ImageValidator();
 
 
-    public static ImageValidator getOurInstance() {
-        return ourInstance;
+    private ImageValidator() {
     }
 
-    private ImageValidator() {
+    public static ImageValidator getOurInstance() {
+        return ourInstance;
     }
 
     @Override
@@ -40,8 +39,4 @@ public class ImageValidator implements Validator {
     }
 
 
-    @Override
-    public boolean isNullOrEmpty(String field) {
-        return false;
-    }
 }
