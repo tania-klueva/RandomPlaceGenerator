@@ -21,6 +21,7 @@ com/randomplace/connection/DBConnection.class
 com/randomplace/filters/LoginFilter.class
 com/randomplace/service/validators/ImageValidator.class
 com/randomplace/utils/PlaceSortingField.class
+com/randomplace/servlets/user/UserEdit.class
 com/randomplace/dto/UserDTO.class
 com/randomplace/service/login/LoginService.class
 com/randomplace/service/image/ImageService.class

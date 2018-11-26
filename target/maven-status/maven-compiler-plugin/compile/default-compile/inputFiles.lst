@@ -14,6 +14,7 @@
 /home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/dao/impl/UserDAO.java
 /home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/service/user/impl/UserService.java
 /home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/servlets/login/LoginServlet.java
+/home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/servlets/user/UserEdit.java
 /home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/service/login/LoginService.java
 /home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/utils/errorMessages/UserValidationError.java
 /home/tank/IdeaProjects/RandomPlaceGenerator/src/main/java/com/randomplace/service/validators/Validator.java

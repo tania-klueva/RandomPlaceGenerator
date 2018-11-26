@@ -52,6 +52,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <script src="resources/js/scroll.js" type="text/javascript"></script>
+
 <script src="resources/js/validation.js" type="text/javascript"></script>
 
 </body>
