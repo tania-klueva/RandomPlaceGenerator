@@ -8,8 +8,10 @@
 <div class="random-tip border p-3">
     <p>Please click the button to randomize place where to eat</p>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="resources/js/randomize.js" type="text/javascript"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/randomize.js" type="text/javascript"></script>
 </body>
 </html>

@@ -51,7 +51,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/js/scroll.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/js/randomize.js" type="text/javascript"></script>
+<script src="resources/js/scroll.js" type="text/javascript"></script>
+<script src="resources/js/validation.js" type="text/javascript"></script>
+
 </body>
 </html>

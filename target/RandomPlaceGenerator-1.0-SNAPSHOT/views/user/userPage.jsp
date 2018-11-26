@@ -17,7 +17,7 @@
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control"
                            id="password" value=""
-                           placeholder="Enter password" required>
+                           placeholder="Enter password" required pattern="[a-zA-Z0-9]{6,20}">
                 </div>
             </div>
             <div class="form-group row">
@@ -25,7 +25,7 @@
                 <div class="col-sm-9">
                     <input type="password" name="passwordConfirm" class="form-control"
                            id="password-confirm" value=""
-                           placeholder="Enter password once again" required>
+                           placeholder="Enter password once again" required  >
                 </div>
             </div>
             <div class="form-group row">

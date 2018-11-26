@@ -11,11 +11,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css">
     <title>Just eat it!</title>
 </head>
 <body id="start" class="bg-light-custom font-weight-light text-dark ">
-<nav class="main-nav bg-dark navbar fixed-top navbar-expand-lg navbar-dark px-3 py-1" id="navbar">
+<nav class="main-nav scroll bg-dark navbar fixed-top navbar-expand-lg navbar-dark px-3 py-1" id="navbar">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

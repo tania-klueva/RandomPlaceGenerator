@@ -7,20 +7,32 @@
         <c:forEach items="${errors}" var="error">
             <p class="text-danger offset-sm-3">${error}</p>
         </c:forEach>
-        <form method="post" action="/signin" class="creation-form">
+        <form method="post" action="/signin" class="creation-form needs-validation" novalidate>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">E-mail</label>
                 <div class="col-sm-9">
                     <input type="email" name="email" class="form-control"
                            id="email" value="" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid email.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password" class="col-sm-3 col-form-label">Password</label>
+                <label for="login-password" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control"
-                           id="password" value=""
+                           id="login-password" value=""
                            placeholder="Enter password" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid password.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">

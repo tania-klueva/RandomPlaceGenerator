@@ -7,12 +7,18 @@
         <c:forEach items="${errors}" var="error">
             <p class="text-danger offset-sm-3">${error}</p>
         </c:forEach>
-        <form method="post" action="<c:url value="/signup"/>" class="creation-form">
+        <form method="post" action="<c:url value="/signup"/>" class="creation-form needs-validation" novalidate>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">E-mail</label>
                 <div class="col-sm-9">
                     <input type="email" name="email" class="form-control"
                            id="email" value="" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid email.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -20,7 +26,13 @@
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control"
                            id="password" value=""
-                           placeholder="Enter password" required>
+                           placeholder="Enter password" required pattern="[a-zA-Z0-9]{6,20}">
+                    <div class="invalid-feedback">
+                        Please provide a valid password.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -28,14 +40,26 @@
                 <div class="col-sm-9">
                     <input type="password" name="passwordConfirm" class="form-control"
                            id="password-confirm" value=""
-                           placeholder="Enter password once again" required>
+                           placeholder="Enter password once again" required data-match="#password">
+                    <div class="invalid-feedback">
+                        Password do not matches.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="first-name" class="col-sm-3 col-form-label">First Name</label>
                 <div class="col-sm-9">
                     <input type="text" name="firstName" class="form-control"
-                           id="first-name" value="" placeholder="Enter yout first name" required>
+                           id="first-name" value="" placeholder="Enter your first name" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid name.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -43,6 +67,12 @@
                 <div class="col-sm-9">
                     <input type="text" name="lastName" class="form-control"
                            id="last-name" value="" placeholder="Enter your last name" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid name.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -50,6 +80,12 @@
                 <div class="col-sm-9">
                     <input type="text" name="city" class="form-control"
                            id="city" value="" placeholder="Enter your city" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid city.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
             </div>
             <div class="form-group row">

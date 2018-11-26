@@ -33,10 +33,10 @@ body {
 /**/
 .main-nav {
     background: url(nav-background-wood.jpg) repeat center;
-    background-size: contain;
+    background-size: cover;
     color: #ced4da;
     transition: all 0.5s;
-    z-index: 5;
+    z-index: 50;
 }
 
 .main-nav a, .main-nav li, .main-nav button {
@@ -58,9 +58,27 @@ body {
     transform: scale(1.1);
 }
 
+.scroll{
+    transition: all 0.5s;
+}
+
 .main-nav::before {
     position: absolute;
-    top: 0;
+    bottom: -10%;
+    right: 0;
+    height: 110%;
+    width: 100%;
+    content: "";
+    background: #343a40;
+    transform-origin: top right;
+    transform: none;
+    z-index: 0;
+    transition: all 0.5s;
+}
+
+.scroll::before {
+    position: absolute;
+    bottom: -10%;
     right: 0;
     height: 110%;
     width: 100%;
@@ -68,7 +86,7 @@ body {
     background: #343a40;
     transform-origin: top right;
     transform: skewY(-2deg);
-    z-index: -1;
+    z-index: 0;
     transition: all 0.5s;
 }
 
@@ -81,9 +99,24 @@ body {
     content: "";
     background: inherit;
     transform-origin: top right;
+    transform: none;
+    transition: all 0.5s;
+    z-index: 100;
+}
+
+
+.scroll::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 150%;
+    width: 100%;
+    content: "";
+    background: inherit;
+    transform-origin: top right;
     transform: skewY(-2deg);
     transition: all 0.5s;
-    z-index: 10;
+    z-index: 100;
 }
 
 .navbar-brand {
@@ -131,27 +164,27 @@ body {
 }
 
 .rotate {
-    animation: rotate 1s ease-in infinite;
+    animation: rotate 2s ease-in alternate infinite;
 }
 
 @keyframes rotate {
     0% {
-        transform: rotate(0)
+        transform: rotate(0) scale(1)
     }
     20% {
-        transform: rotate(360deg)
+        transform: rotate(180deg) scale(1.1)
     }
     40% {
-        transform: rotate(0)
+        transform: rotate(360deg) scale(1)
     }
     60% {
-        transform: rotate(360deg)
+        transform: rotate(0) scale(1)
     }
     80% {
-        transform: rotate(0)
+        transform: rotate(180deg) scale(1.1)
     }
     100% {
-        transform: rotate(360deg)
+        transform: rotate(360deg) scale(1)
     }
 }
 

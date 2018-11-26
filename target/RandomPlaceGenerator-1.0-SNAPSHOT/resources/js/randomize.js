@@ -5,6 +5,6 @@ $(document).ready(function () {
         $("#random-button").addClass("rotate");
         setTimeout(function () {
             window.location.href = "/randomize";
-        }, 2000);
+        }, 1000);
     })
 });
