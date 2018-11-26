@@ -131,14 +131,26 @@ body {
 }
 
 .rotate {
-    animation: rotate .7s ease-in-out infinite;
+    animation: rotate 1s ease-in infinite;
 }
 
 @keyframes rotate {
-    from {
+    0% {
         transform: rotate(0)
     }
-    to {
+    20% {
+        transform: rotate(360deg)
+    }
+    40% {
+        transform: rotate(0)
+    }
+    60% {
+        transform: rotate(360deg)
+    }
+    80% {
+        transform: rotate(0)
+    }
+    100% {
         transform: rotate(360deg)
     }
 }

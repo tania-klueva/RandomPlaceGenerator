@@ -2,27 +2,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../../WEB-INF/header.jsp"/>
 <div class="container p-5">
-        <h1 class="display-3 text-center font-weight-light text-blue p-5  m-after-nav">${place.name}</h1>
+    <h1 class="display-3 text-center font-weight-light text-blue p-5  m-after-nav">${place.name}</h1>
     <div class="py-5">
         <h2 class="text-center font-weight-light">About us</h2>
         <div class="p-5 border rounded desc-block bg-light">
             <div class="row">
                 <div class="col">
                     <div class="row">
-                        <div class="col-4"><p class="font-weight-bold">Specification</p></div>
-                        <div class="col-8"><p class="">${place.specification}</p></div>
+                        <div class="col-4"><p class="">Specification</p></div>
+                        <div class="col-8"><p class="text-secondary">${place.specification}</p></div>
                     </div>
                     <div class="row">
-                        <div class="col-4"><p class="font-weight-bold">City</p></div>
-                        <div class="col-8"><p class="">${place.city}</p></div>
+                        <div class="col-4"><p class="">City</p></div>
+                        <div class="col-8"><p class="text-secondary">${place.city}</p></div>
                     </div>
                     <div class="row">
-                        <div class="col-4"><p class="font-weight-bold">Address</p></div>
-                        <div class="col-8"><p class="">${place.address}</p></div>
+                        <div class="col-4"><p class="">Address</p></div>
+                        <div class="col-8"><p class="text-secondary">${place.address}</p></div>
                     </div>
                     <div class="row">
-                        <div class="col-4"><p class="font-weight-bold">About</p></div>
-                        <div class="col-8"><p>${place.description}</p></div>
+                        <div class="col-4"><p class="">About</p></div>
+                        <div class="col-8"><p class="text-secondary">${place.description}</p></div>
 
                     </div>
                 </div>
