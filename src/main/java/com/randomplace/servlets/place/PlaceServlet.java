@@ -1,6 +1,8 @@
 package com.randomplace.servlets.place;
 
 import com.randomplace.models.Place;
+import com.randomplace.models.User;
+import com.randomplace.security.UserSession;
 import com.randomplace.service.place.impl.PlaceService;
 import com.randomplace.service.validators.Validator;
 import com.randomplace.utils.PagePath;
@@ -30,6 +32,8 @@ public class PlaceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> errorList = new ArrayList<>();
+        User currentUser = UserSession.getCurrentUser(req);
+        System.out.println("USER IS" + currentUser);
         String id = req.getParameter("id");
         if (Validator.isNullOrEmpty(id)) {
             String page = req.getParameter("page");
@@ -40,6 +44,7 @@ public class PlaceServlet extends HttpServlet {
             }
             int numberOfPages = placeService.countNumberOfPages(items, errorList);
             List<Place> allByPage = placeService.findAllByPage(page, items, PlaceSortingField.ID, errorList);
+            System.out.println("PLACES  " + allByPage);
             if (allByPage != null && !allByPage.isEmpty()) {
                 req.setAttribute("places", allByPage);
                 req.setAttribute("page", page);
@@ -48,19 +53,16 @@ public class PlaceServlet extends HttpServlet {
             } else {
                 errorList.add(PlaceValidationError.NO_PLACES_IN_DB.getErrorText());
             }
-
-//            List<Place> places = placeService.findAll();
-//            if (places != null && !places.isEmpty()) {
-//                req.setAttribute("places", places);
-//                req.getRequestDispatcher(PagePath.PLACE_LIST).forward(req, resp);
-//            } else {
-//                errorList.add(PlaceValidationError.NO_PLACES_IN_DB.getErrorText());
-//            }
         } else {
             Place place = placeService.findById(id, errorList);
             if (errorList.isEmpty()) {
                 if (place != null) {
                     req.setAttribute("place", place);
+                    if (currentUser!= null && currentUser.equals(place.getUser())){
+                        req.setAttribute("canEdit", true);
+                    }else{
+                        req.setAttribute("canEdit", false);
+                    }
                     req.getRequestDispatcher(PagePath.PLACE_PAGE).forward(req, resp);
                 } else {
                     resp.sendError(404);

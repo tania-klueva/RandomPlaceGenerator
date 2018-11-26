@@ -1,5 +1,8 @@
 package com.randomplace.servlets.login;
 
+import com.randomplace.models.User;
+import com.randomplace.security.UserSession;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,8 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User currentUser = UserSession.getCurrentUser(req);
+        UserSession.clearSession(currentUser.getId());
         req.getSession().invalidate();
         resp.sendRedirect("/");
     }

@@ -1,12 +1,12 @@
 var UID = {
     _current: 0,
-    getNew: function(){
+    getNew: function () {
         this._current++;
         return this._current;
     }
 };
 
-HTMLElement.prototype.pseudoStyle = function(element,prop,value){
+HTMLElement.prototype.pseudoStyle = function (element, prop, value) {
     var _this = this;
     var _sheetId = "pseudoStyles";
     var _head = document.head || document.getElementsByTagName('head')[0];
@@ -14,14 +14,16 @@ HTMLElement.prototype.pseudoStyle = function(element,prop,value){
     _sheet.id = _sheetId;
     var className = "pseudoStyle" + UID.getNew();
 
-    _this.className +=  " "+className;
+    _this.className += " " + className;
 
-    _sheet.innerHTML += " ."+className+":"+element+"{"+prop+":"+value+"}";
+    _sheet.innerHTML += " ." + className + ":" + element + "{" + prop + ":" + value + "}";
     _head.appendChild(_sheet);
     return this;
 };
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () {
+    scrollFunction()
+};
 
 function scrollFunction() {
     let nav = document.getElementById("navbar");
@@ -43,7 +45,7 @@ function scrollFunction() {
     } else {
         nav.pseudoStyle("before", "transform", "skewY(-2deg)");
         nav.pseudoStyle("after", "transform", "skewY(-2deg)");
-        nav.style.transform="none";
+        nav.style.transform = "none";
         for (let i = 0; i < link.length; i++) {
             link[i].style.fontSize = "1.2rem";
 

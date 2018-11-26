@@ -60,7 +60,7 @@ public class PlaceDAO implements IPlaceDAO {
                 place.setAddress(resultSet.getString(5));
                 place.setDescription(resultSet.getString(6));
                 place.setImagePath(resultSet.getString(7));
-                place.setUser(new User(resultSet.getInt(8)));
+                place.setUser(UserDAO.getOurInstance().findById(resultSet.getInt(8)));
                 return place;
             }
         } catch (SQLException e) {
@@ -84,7 +84,7 @@ public class PlaceDAO implements IPlaceDAO {
                 place.setAddress(resultSet.getString(5));
                 place.setDescription(resultSet.getString(6));
                 place.setImagePath(resultSet.getString(7));
-                place.setUser(new User(resultSet.getInt(8)));
+                place.setUser(UserDAO.getOurInstance().findById(resultSet.getInt(8)));
                 return place;
             }
         } catch (SQLException e) {
@@ -139,7 +139,7 @@ public class PlaceDAO implements IPlaceDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places ORDER BY ? LIMIT ? OFFSET ?");
             preparedStatement.setString(1, fieldToSortBy);
             preparedStatement.setInt(2, count);
-            preparedStatement.setInt(3, (count * (page - 1)) + 1);
+            preparedStatement.setInt(3, count * (page - 1));
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Place place = new Place();

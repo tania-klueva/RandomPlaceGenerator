@@ -39,8 +39,9 @@ public class UserCreate extends HttpServlet {
         user.setFirstName(req.getParameter("firstName"));
         user.setLastName(req.getParameter("lastName"));
         user.setCity(req.getParameter("city"));
-        user.setRole(Role.USER);
+        user.setRole(Role.USER.getRole());
         String passwordConfirm = req.getParameter("passwordConfirm");
+        System.out.println(user);
         userService.save(user, passwordConfirm, errorList);
         if (errorList.isEmpty()) {
             resp.sendRedirect("/signin");

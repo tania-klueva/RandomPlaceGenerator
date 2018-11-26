@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class User {
     private int id;
-    private Role role = Role.USER;
+    private String role = Role.USER.getRole();
     private String email;
     private String password;
     private String firstName;
@@ -17,7 +17,7 @@ public class User {
     public User() {
     }
 
-    public User(Role role, String email, String password, String firstName, String lastName, String city, List<Place> places) {
+    public User(String role, String email, String password, String firstName, String lastName, String city, List<Place> places) {
         this.role = role;
         this.email = email;
         this.password = password;
@@ -27,7 +27,7 @@ public class User {
         this.places = places;
     }
 
-    public User(int id, Role role, String email, String password, String firstName, String lastName, String city, List<Place> places) {
+    public User(int id, String role, String email, String password, String firstName, String lastName, String city, List<Place> places) {
 
         this.role = role;
         this.email = email;
@@ -50,11 +50,11 @@ public class User {
         this.id = id;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

@@ -4,7 +4,7 @@
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Your profile</h1>
     <div class="">
-        <form method="post" action="<c:url value="/user/edit"/>"  class="creation-form">
+        <form method="post" action="<c:url value="/user/edit"/>" class="creation-form">
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">E-mail</label>
                 <div class="col-sm-9">
@@ -32,7 +32,8 @@
                 <label for="first-name" class="col-sm-3 col-form-label">First Name</label>
                 <div class="col-sm-9">
                     <input type="text" name="firstName" class="form-control"
-                           id="first-name" value="${user.firstName}" placeholder="Enter yout first name" readonly required>
+                           id="first-name" value="${user.firstName}" placeholder="Enter yout first name" readonly
+                           required>
                 </div>
             </div>
             <div class="form-group row">
@@ -44,9 +45,9 @@
             </div>
             <div class="form-group row">
                 <label for="city" class="col-sm-3 col-form-label">City</label>
-                <input type="text" name="city" class="form-control"
-                       id="city" value="${user.city}" placeholder="Enter your city" readonly required>
                 <div class="col-sm-9">
+                    <input type="text" name="city" class="form-control"
+                           id="city" value="${user.city}" placeholder="Enter your city" readonly required>
                 </div>
             </div>
             <div class="form-group row">

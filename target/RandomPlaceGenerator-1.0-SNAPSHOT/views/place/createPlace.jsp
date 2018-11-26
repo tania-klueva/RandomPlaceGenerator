@@ -7,7 +7,7 @@
         <c:forEach items="${errors}" var="error">
             <p class="text-danger offset-sm-3">${error}</p>
         </c:forEach>
-        <form method="post" action="/place/create" enctype="multipart/form-data" class="creation-form">
+        <form method="post" action="/user/place/create" enctype="multipart/form-data" class="creation-form">
             <input type="hidden" value="${place.id}">
             <div class="form-group row">
                 <label for="pName" class="col-sm-3 col-form-label">Name</label>

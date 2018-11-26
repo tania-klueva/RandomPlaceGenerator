@@ -4,9 +4,9 @@
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Sign up</h1>
     <div class="">
-            <c:forEach items="${errors}" var="error">
-                <p class="text-danger offset-sm-3">${error}</p>
-            </c:forEach>
+        <c:forEach items="${errors}" var="error">
+            <p class="text-danger offset-sm-3">${error}</p>
+        </c:forEach>
         <form method="post" action="<c:url value="/signup"/>" class="creation-form">
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">E-mail</label>

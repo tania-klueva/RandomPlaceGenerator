@@ -12,16 +12,11 @@ import java.util.List;
 
 public class UserService implements IUserService {
 
+    private static UserService ourInstance = new UserService();
     private UserDAO userDAO;
     private UserValidator userValidator;
     private PasswordEncoder passwordEncoder;
 
-    private static UserService ourInstance = new UserService();
-
-
-    public static UserService getOurInstance() {
-        return ourInstance;
-    }
 
     private UserService() {
         this.userValidator = UserValidator.getOurInstance();
@@ -29,6 +24,9 @@ public class UserService implements IUserService {
         this.passwordEncoder = PasswordEncoder.getOurInstance();
     }
 
+    public static UserService getOurInstance() {
+        return ourInstance;
+    }
 
     @Override
     public void save(User user, String confirmPassword, List<String> errorList) {
@@ -57,15 +55,6 @@ public class UserService implements IUserService {
         return null;
     }
 
-    @Override
-    public String findUserPasswordByEmail(String email, List<String> errorList) {
-        if (userValidator.isNullOrEmpty(email)) {
-            errorList.add(UserValidationError.EMAIL_EMPTY_ERROR.getErrorText());
-        } else {
-            return userDAO.findUserPasswordByEmail(email);
-        }
-        return null;
-    }
 
     @Override
     public User findById(String id, List<String> errorList) {
@@ -89,7 +78,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void update(User user, String confirmPassword, List<String> errorList) {
+    public void update(User user, List<String> errorList) {
         userValidator.validate(errorList, user);
         if (errorList.isEmpty()) {
             passwordEncoder.encodePassword(user);

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/place/edit")
+@WebServlet("/user/place/edit")
 @MultipartConfig(
         maxFileSize = 1024 * 1024 * 10,
         fileSizeThreshold = 1024 * 1024 * 2,

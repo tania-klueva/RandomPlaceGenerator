@@ -12,5 +12,6 @@ public interface PagePath {
     String PLACE_PAGE = PLACE_PREFIX + "place" + SUFFIX;
     String PLACE_LIST = PLACE_PREFIX + "places" + SUFFIX;
     String SIGN_IN = LOGIN_PREFIX + "signIn" + SUFFIX;
+    String ERROR = "/views/error" + SUFFIX;
 }
 

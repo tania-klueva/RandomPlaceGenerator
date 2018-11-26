@@ -6,7 +6,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -30,16 +31,14 @@
                 <a class="nav-link mx-5" href="/place">Places</a>
             </li>
         </ul>
-       <c:if test="${user == null}">
-           <a class="btn-light-outline" href="/signin">Sign in</a>
-       </c:if>
-        <c:if test="${user != null}">
-            <c:if test="${user.getRole == Role.USER}">
+        <c:choose>
+
+            <c:when test = "${isAuthorized == true}">
                 <a class="btn-light-outline" href="/user/page">Profile</a>
-            </c:if>
-            <c:if test="${user.getRole == Role.USER}">
-                <a class="btn-light-outline" href="/admin/page">Profile</a>
-            </c:if>
-        </c:if>
+            </c:when>
+            <c:otherwise>
+                <a class="btn-light-outline" href="/signin">Sign in</a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </nav>

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/place/delete")
+@WebServlet("/user/place/delete")
 public class PlaceDelete extends HttpServlet {
 
     PlaceService placeService;

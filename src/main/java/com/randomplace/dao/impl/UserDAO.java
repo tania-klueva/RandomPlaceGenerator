@@ -28,12 +28,13 @@ public class UserDAO implements IUserDAO {
     @Override
     public void save(User user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Users(email, password, firstName, lastName, city) VALUE (?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Users(email, password, firstName, lastName, city, role) VALUE (?,?,?,?,?,?)");
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFirstName());
             preparedStatement.setString(4, user.getLastName());
             preparedStatement.setString(5, user.getCity());
+            preparedStatement.setString(6, user.getRole());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -46,7 +47,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public User findByEmail(String email) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, email, password, firstName, lastName, city from Users where email like ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, email, password, firstName, lastName, city, role from Users where email like ?");
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -57,6 +58,7 @@ public class UserDAO implements IUserDAO {
                 user.setFirstName(resultSet.getString(4));
                 user.setLastName(resultSet.getString(5));
                 user.setCity(resultSet.getString(6));
+                user.setRole(resultSet.getString(7));
                 return user;
             }
         } catch (SQLException e) {
@@ -110,7 +112,7 @@ public class UserDAO implements IUserDAO {
     public List<User> findAll() {
         try {
             List<User> users = new ArrayList<>();
-            ResultSet resultSet = connection.prepareStatement("SELECT id, email, password, firstName, lastName, city from Users").executeQuery();
+            ResultSet resultSet = connection.prepareStatement("SELECT id, email, password, firstName, lastName, city, role from Users").executeQuery();
             while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getInt(1));
@@ -119,6 +121,7 @@ public class UserDAO implements IUserDAO {
                 user.setFirstName(resultSet.getString(4));
                 user.setLastName(resultSet.getString(5));
                 user.setCity(resultSet.getString(6));
+                user.setRole(resultSet.getString(7));
                 users.add(user);
             }
             return users;

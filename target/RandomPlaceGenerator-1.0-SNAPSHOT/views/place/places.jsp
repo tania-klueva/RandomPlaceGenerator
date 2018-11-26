@@ -4,8 +4,11 @@
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Places</h1>
     <main class="row">
-        <a id="redColor" class="add-new-place-button text-dark border p-3 bg-light" href="/place/create">Add new
-            place</a>
+        <c:if test="${isAuthorized == true}">
+            <a id="redColor" class="add-new-place-button text-dark border p-3 bg-light" href="user/place/create">Add new
+                place</a>
+        </c:if>
+
         <c:forEach items="${errors}" var="error">
             <p class="text-danger mx-auto">${error}</p>
         </c:forEach>

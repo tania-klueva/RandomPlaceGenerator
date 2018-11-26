@@ -4,7 +4,7 @@
     color: #3eb1bc;
 }
 
-.border-blue{
+.border-blue {
     border-color: #3eb1bc;
 }
 
@@ -16,11 +16,11 @@
     background: #f0f0f0;
 }
 
-.bg-blue{
+.bg-blue {
     background: #3eb1bc;
 }
 
-.m-after-nav{
+.m-after-nav {
     margin-top: 6rem;
 }
 
@@ -53,7 +53,7 @@ body {
 }
 
 .navbar .nav-link:hover {
-    color: rgba(255, 255, 255, 1)!important;
+    color: rgba(255, 255, 255, 1) !important;
     border-bottom: 3px solid #3eb1bc;
     transform: scale(1.1);
 }
@@ -93,7 +93,6 @@ body {
     transition: all 0.5s;
 }
 
-
 /*INDEX*/
 /**/
 /**/
@@ -131,20 +130,24 @@ body {
     font-size: 0.8rem;
 }
 
-.rotate{
+.rotate {
     animation: rotate .7s ease-in-out infinite;
 }
 
 @keyframes rotate {
-    from {transform: rotate(0)}
-    to {transform: rotate(360deg)}
+    from {
+        transform: rotate(0)
+    }
+    to {
+        transform: rotate(360deg)
+    }
 }
 
 /*PLACES*/
 /**/
 /**/
 /**/
-.add-new-place-button{
+.add-new-place-button {
     height: auto;
     width: 100px;
     text-align: center;
@@ -154,14 +157,14 @@ body {
     font-size: 0.8rem;
 }
 
-.custom-blue-button{
+.custom-blue-button {
     background: #3eb1bc;
     color: snow;
     border: 1px transparent solid;
     transition: all .5s;
 }
 
-.custom-blue-button:hover{
+.custom-blue-button:hover {
     background: #36939e;
     border: 1px transparent solid;
 }
@@ -179,8 +182,6 @@ body {
     border-left: 1px solid #dee2e6;
     padding: .5rem 2rem;
 }
-
-
 
 .place-crud-button a:hover {
 }
@@ -205,12 +206,9 @@ body {
 /**/
 /**/
 
-
 .creation-form input:focus, .creation-form textarea:focus {
     box-shadow: 0 0 3px 2px #3eb1bc;
 }
-
-
 
 /*FOOTER*/
 /**/
