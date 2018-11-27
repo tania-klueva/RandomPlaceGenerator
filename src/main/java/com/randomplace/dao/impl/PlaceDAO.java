@@ -51,18 +51,8 @@ public class PlaceDAO implements IPlaceDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId from Places where id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                Place place = new Place();
-                place.setId(resultSet.getInt(1));
-                place.setName(resultSet.getString(2));
-                place.setSpecification(resultSet.getString(3));
-                place.setCity(resultSet.getString(4));
-                place.setAddress(resultSet.getString(5));
-                place.setDescription(resultSet.getString(6));
-                place.setImagePath(resultSet.getString(7));
-                place.setUser(UserDAO.getOurInstance().findById(resultSet.getInt(8)));
-                return place;
-            }
+            Place place = getPlace(resultSet);
+            if (place != null) return place;
         } catch (SQLException e) {
 
             e.printStackTrace();
@@ -75,21 +65,27 @@ public class PlaceDAO implements IPlaceDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId from Places where specification = ?");
             preparedStatement.setString(1, specification);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                Place place = new Place();
-                place.setId(resultSet.getInt(1));
-                place.setName(resultSet.getString(2));
-                place.setSpecification(resultSet.getString(3));
-                place.setCity(resultSet.getString(4));
-                place.setAddress(resultSet.getString(5));
-                place.setDescription(resultSet.getString(6));
-                place.setImagePath(resultSet.getString(7));
-                place.setUser(UserDAO.getOurInstance().findById(resultSet.getInt(8)));
-                return place;
-            }
+            Place place = getPlace(resultSet);
+            if (place != null) return place;
         } catch (SQLException e) {
 
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    private Place getPlace(ResultSet resultSet) throws SQLException {
+        if (resultSet.next()) {
+            Place place = new Place();
+            place.setId(resultSet.getInt(1));
+            place.setName(resultSet.getString(2));
+            place.setSpecification(resultSet.getString(3));
+            place.setCity(resultSet.getString(4));
+            place.setAddress(resultSet.getString(5));
+            place.setDescription(resultSet.getString(6));
+            place.setImagePath(resultSet.getString(7));
+            place.setUser(UserDAO.getOurInstance().findById(resultSet.getInt(8)));
+            return place;
         }
         return null;
     }
@@ -114,22 +110,26 @@ public class PlaceDAO implements IPlaceDAO {
         try {
             List<Place> places = new ArrayList<>();
             ResultSet resultSet = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId from Places").executeQuery();
-            while (resultSet.next()) {
-                Place place = new Place();
-                place.setId(resultSet.getInt(1));
-                place.setName(resultSet.getString(2));
-                place.setSpecification(resultSet.getString(3));
-                place.setCity(resultSet.getString(4));
-                place.setAddress(resultSet.getString(5));
-                place.setDescription(resultSet.getString(6));
-                place.setImagePath(resultSet.getString(7));
-                places.add(place);
-            }
+            getListOfPlacesFromResultSet(places, resultSet);
             return places;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private void getListOfPlacesFromResultSet(List<Place> places, ResultSet resultSet) throws SQLException {
+        while (resultSet.next()) {
+            Place place = new Place();
+            place.setId(resultSet.getInt(1));
+            place.setName(resultSet.getString(2));
+            place.setSpecification(resultSet.getString(3));
+            place.setCity(resultSet.getString(4));
+            place.setAddress(resultSet.getString(5));
+            place.setDescription(resultSet.getString(6));
+            place.setImagePath(resultSet.getString(7));
+            places.add(place);
+        }
     }
 
     @Override
@@ -141,17 +141,25 @@ public class PlaceDAO implements IPlaceDAO {
             preparedStatement.setInt(2, count);
             preparedStatement.setInt(3, count * (page - 1));
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Place place = new Place();
-                place.setId(resultSet.getInt(1));
-                place.setName(resultSet.getString(2));
-                place.setSpecification(resultSet.getString(3));
-                place.setCity(resultSet.getString(4));
-                place.setAddress(resultSet.getString(5));
-                place.setDescription(resultSet.getString(6));
-                place.setImagePath(resultSet.getString(7));
-                places.add(place);
-            }
+            getListOfPlacesFromResultSet(places, resultSet);
+            return places;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Place> findForPagesByUserId(int userId, int page, int count, String fieldToSortBy) {
+        try {
+            List<Place> places = new ArrayList<>();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places WHERE userId = ? ORDER BY ? LIMIT ? OFFSET ?");
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, fieldToSortBy);
+            preparedStatement.setInt(3, count);
+            preparedStatement.setInt(4, count * (page - 1));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            getListOfPlacesFromResultSet(places, resultSet);
             return places;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -198,6 +206,21 @@ public class PlaceDAO implements IPlaceDAO {
     public int countRecords() {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(id) from Places ");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    @Override
+    public int countRecordsById(int userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(id) from Places where userId = ?");
+            preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt(1);

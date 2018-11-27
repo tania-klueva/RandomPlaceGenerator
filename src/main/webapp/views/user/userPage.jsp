@@ -1,21 +1,42 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="../../WEB-INF/header.jsp"/>
+<jsp:include page="/WEB-INF/header.jsp"/>
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Your profile</h1>
+    <c:if test="${not empty success}">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                ${success}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+
+    <c:forEach items="${errors}" var="error">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                ${error}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:forEach>
+
     <div class="p-3 border bg-light rounded row">
         <div class="col-md-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="profile-pills-tab" data-toggle="pill" href="#profile-pills"
-                   role="tab" aria-controls="profile-pills" aria-selected="true">Personal info</a>
+                   role="tab" aria-controls="profile-pills" aria-selected="true"><i class="fas fa-user-ninja"></i>
+                    Personal info</a>
                 <a class="nav-link" id="edit-pills-tab" data-toggle="pill" href="#edit-pills" role="tab"
-                   aria-controls="edit-pills" aria-selected="false">Edit personal info </a>
+                   aria-controls="edit-pills" aria-selected="false"><i class="fas fa-user-edit"></i> Edit personal info
+                </a>
                 <a class="nav-link" id="edit-password-pills-tab" data-toggle="pill" href="#edit-password-pills"
                    role="tab"
-                   aria-controls="edit-password-pills" aria-selected="false">Change password</a>
+                   aria-controls="edit-password-pills" aria-selected="false"><i class="fas fa-user-shield"></i> Change
+                    password</a>
                 <a class="nav-link" id="place-pills-tab" data-toggle="pill" href="#place-pills"
                    role="tab"
-                   aria-controls="place-pills" aria-selected="false">Your places</a>
+                   aria-controls="place-pills" aria-selected="false"><i class="fas fa-cookie"></i> Your places</a>
             </div>
         </div>
         <div class="col-md-9">
@@ -42,8 +63,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade  p-3" id="edit-pills" role="tabpanel" aria-labelledby="edit-pills-tab">
-
-                    <form method="post" action="<c:url value="/user/edit"/>"
+                    <form method="post" action="<c:url value="/user/page?edit=info"/>"
                           class="creation-form needs-validation" novalidate>
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">E-mail</label>
@@ -59,6 +79,12 @@
                                        id="first-name" value="${user.firstName}"
                                        placeholder="Enter yout first name"
                                        required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -67,6 +93,12 @@
                                 <input type="text" name="lastName" class="form-control"
                                        id="last-name" value="${user.lastName}"
                                        placeholder="Enter your last name" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid name.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -74,6 +106,12 @@
                             <div class="col-sm-9">
                                 <input type="text" name="city" class="form-control"
                                        id="city" value="${user.city}" placeholder="Enter your city" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid city.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -85,9 +123,7 @@
                 </div>
                 <div class="tab-pane fade  p-3" id="edit-password-pills" role="tabpanel"
                      aria-labelledby="edit-password-pills-tab">
-
-
-                    <form method="post" action="<c:url value="/user/edit/password"/>"
+                    <form method="post" action="<c:url value="/user/page?edit=password"/>"
                           class="creation-form needs-validation" novalidate>
                         <div class="form-group row">
                             <label for="old-password" class="col-sm-3 col-form-label">Password</label>
@@ -95,6 +131,12 @@
                                 <input type="password" name="oldPassword" class="form-control"
                                        id="old-password" value=""
                                        placeholder="Enter old password" required pattern="[a-zA-Z0-9]{6,20}">
+                                <div class="invalid-feedback">
+                                    Please provide a valid password.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -103,6 +145,12 @@
                                 <input type="password" name="newPassword" class="form-control"
                                        id="password" value=""
                                        placeholder="Enter new password" required pattern="[a-zA-Z0-9]{6,20}">
+                                <div class="invalid-feedback">
+                                    Please provide a valid password.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -112,6 +160,12 @@
                                 <input type="password" name="passwordConfirm" class="form-control"
                                        id="password-confirm" value=""
                                        placeholder="Enter password once again" required>
+                                <div class="invalid-feedback">
+                                    Password do not matches.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -124,10 +178,69 @@
 
                 <div class="tab-pane fade  p-3" id="place-pills" role="tabpanel"
                      aria-labelledby="place-pills-tab">
-                    HERE ID OUR PLACES
+                    <c:forEach items="${userPlaceErrors}" var="userPlaceError">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                ${userPlaceError}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </c:forEach>
+                    <c:forEach var="place" items="${places}">
+                        <div class="row w-100 border p-3 rounded m-3 bg-light-custom">
+                            <div class="col-md-5">
+                                <img src="/image?fileName=${place.imagePath}"
+                                     class="img-fluid rounded" alt="">
+                            </div>
+                            <div class="col-md-7">
+                                <h4>${place.name}</h4>
+                                <hr>
+                                <p>${place.specification}</p>
+                                <p>${place.city}</p>
+                                <p>${place.address}</p>
+                                <a href="/place?id=${place.id}" class="btn btn-primary custom-blue-button">More</a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <nav aria-label="pagination">
+                        <ul class="pagination justify-content-center">
+                            <c:if test="${page != 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="/user/page?items=${5}&page=${page-1}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                                <c:forEach begin="1" end="${numberOfPages}" var="i">
+                                    <c:choose>
+                                        <c:when test="${currentPage eq i}">
+                                            <li class="page-item active"><a class="page-link">
+                                                    ${i} <span class="sr-only">(current)</span></a>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="/user/page?items=${5}&page=${i}">${i}</a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                                <c:if test="${page lt numberOfPages}">
+                                    <li class="page-item">
+                                        <a class="page-link" href="/user/page=${5}&page=${page+1}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<jsp:include page="../../WEB-INF/footer.jsp"/>
+<jsp:include page="/WEB-INF/footer.jsp"/>

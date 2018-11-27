@@ -13,9 +13,9 @@ public interface IUserService {
 
     List<User> findAll();
 
-    void update(User user, List<String> errorList);
+    User update(User user, List<String> errorList);
 
-    void updatePassword(User user, String oldPassword, String newPassword, String confirmPassword, List<String> errorList);
+    User updatePassword(User user, String oldPassword, String newPassword, String confirmPassword, List<String> errorList);
 
     void deleteById(String id, List<String> errorList);
 }

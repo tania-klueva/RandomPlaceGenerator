@@ -78,16 +78,16 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void update(User user, List<String> errorList) {
+    public User update(User user, List<String> errorList) {
         userValidator.validate(errorList, user);
         if (errorList.isEmpty()) {
-            passwordEncoder.encodePassword(user);
             userDAO.update(user);
         }
+        return userDAO.findById(user.getId());
     }
 
     @Override
-    public void updatePassword(User user, String oldPassword, String newPassword, String confirmPassword, List<String> errorList) {
+    public User updatePassword(User user, String oldPassword, String newPassword, String confirmPassword, List<String> errorList) {
         if (userValidator.isNullOrEmpty(oldPassword) || userValidator.isNullOrEmpty(newPassword) || userValidator.isNullOrEmpty(confirmPassword)) {
             errorList.add(UserValidationError.PASSWORD_EMPTY_ERROR.getErrorText());
         } else {
@@ -103,6 +103,7 @@ public class UserService implements IUserService {
             }
         }
 
+        return userDAO.findById(user.getId());
     }
 
     @Override

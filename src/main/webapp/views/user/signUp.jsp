@@ -5,14 +5,19 @@
     <h1 class="text-center py-5 m-after-nav">Sign up</h1>
     <div class="">
         <c:forEach items="${errors}" var="error">
-            <p class="text-danger offset-sm-3">${error}</p>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    ${error}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </c:forEach>
         <form method="post" action="<c:url value="/signup"/>" class="creation-form needs-validation" novalidate>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">E-mail</label>
                 <div class="col-sm-9">
                     <input type="email" name="email" class="form-control"
-                           id="email" value="" placeholder="Enter your email" required>
+                           id="email" value="${user.email}" placeholder="Enter your email" required>
                     <div class="invalid-feedback">
                         Please provide a valid email.
                     </div>
@@ -53,7 +58,7 @@
                 <label for="first-name" class="col-sm-3 col-form-label">First Name</label>
                 <div class="col-sm-9">
                     <input type="text" name="firstName" class="form-control"
-                           id="first-name" value="" placeholder="Enter your first name" required>
+                           id="first-name" value="${user.firstName}" placeholder="Enter your first name" required>
                     <div class="invalid-feedback">
                         Please provide a valid name.
                     </div>
@@ -66,7 +71,7 @@
                 <label for="last-name" class="col-sm-3 col-form-label">Last Name</label>
                 <div class="col-sm-9">
                     <input type="text" name="lastName" class="form-control"
-                           id="last-name" value="" placeholder="Enter your last name" required>
+                           id="last-name" value="${user.lastName}" placeholder="Enter your last name" required>
                     <div class="invalid-feedback">
                         Please provide a valid name.
                     </div>
@@ -79,7 +84,7 @@
                 <label for="city" class="col-sm-3 col-form-label">City</label>
                 <div class="col-sm-9">
                     <input type="text" name="city" class="form-control"
-                           id="city" value="" placeholder="Enter your city" required>
+                           id="city" value="${user.city}" placeholder="Enter your city" required>
                     <div class="invalid-feedback">
                         Please provide a valid city.
                     </div>

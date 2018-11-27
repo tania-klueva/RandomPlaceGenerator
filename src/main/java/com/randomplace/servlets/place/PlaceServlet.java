@@ -45,13 +45,11 @@ public class PlaceServlet extends HttpServlet {
             int numberOfPages = placeService.countNumberOfPages(items, errorList);
             List<Place> allByPage = placeService.findAllByPage(page, items, PlaceSortingField.ID, errorList);
             System.out.println("PLACES  " + allByPage);
-            if (allByPage != null && !allByPage.isEmpty()) {
+            if (errorList.isEmpty()) {
                 req.setAttribute("places", allByPage);
                 req.setAttribute("page", page);
                 req.setAttribute("numberOfPages", numberOfPages);
                 req.getRequestDispatcher(PagePath.PLACE_LIST).forward(req, resp);
-            } else {
-                errorList.add(PlaceValidationError.NO_PLACES_IN_DB.getErrorText());
             }
         } else {
             Place place = placeService.findById(id, errorList);

@@ -72,6 +72,7 @@ public class PlaceCreate extends HttpServlet {
         if (errorList.isEmpty()) {
             resp.sendRedirect("/place");
         } else {
+            req.setAttribute("place", place);
             req.setAttribute("errors", errorList);
             doGet(req, resp);
         }

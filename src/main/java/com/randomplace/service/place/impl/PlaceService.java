@@ -7,6 +7,7 @@ import com.randomplace.service.validators.PlaceValidator;
 import com.randomplace.service.validators.Validator;
 import com.randomplace.utils.PlaceSortingField;
 import com.randomplace.utils.errorMessages.PlaceValidationError;
+import com.randomplace.utils.errorMessages.UserValidationError;
 
 import java.util.List;
 
@@ -96,10 +97,46 @@ public class PlaceService implements IPlaceService {
                 errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
             } else {
                 if (errorList.isEmpty()) {
-                    return placeDAO.findAllForPages(page, count, field.getFieldName());
+                    List<Place> forPagesByUserId = placeDAO.findAllForPages(page, count, field.getFieldName());
+                    if (!forPagesByUserId.isEmpty()) {
+                        return forPagesByUserId;
+                    }
                 }
             }
         }
+        errorList.add(PlaceValidationError.NO_PLACES_IN_DB.getErrorText());
+        return null;
+    }
+
+    @Override
+    public List<Place> findForPagesByUserId(int userId, String pageString, String countString, PlaceSortingField field, List<String> errorList) {
+        if (Validator.isNullOrEmpty(pageString)) {
+            errorList.add(PlaceValidationError.WRONG_PAGE.getErrorText());
+        }
+        if (Validator.isNullOrEmpty(countString)) {
+            errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
+        }
+        if (errorList.isEmpty()) {
+            int page = Integer.parseInt(pageString);
+            int count = Integer.parseInt(countString);
+            if (userId <= 0) {
+                errorList.add(UserValidationError.ID_ERROR.getErrorText());
+            }
+            if (page <= 0) {
+                errorList.add(PlaceValidationError.WRONG_PAGE.getErrorText());
+            }
+            if (count < 3 || count > 15) {
+                errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
+            } else {
+                if (errorList.isEmpty()) {
+                    List<Place> forPagesByUserId = placeDAO.findForPagesByUserId(userId, page, count, field.getFieldName());
+                    if (!forPagesByUserId.isEmpty()) {
+                        return forPagesByUserId;
+                    }
+                }
+            }
+        }
+        errorList.add(PlaceValidationError.NO_PLACES_IN_DB.getErrorText());
         return null;
     }
 
@@ -141,6 +178,28 @@ public class PlaceService implements IPlaceService {
                     if (i != -1) {
                         return (int) Math.ceil(i / count);
                     }
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int countNumberOfPagesByUserId(int userId, String countString, List<String> errorList) {
+        if (Validator.isNullOrEmpty(countString)) {
+            errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
+        }
+        if (userId <= 0) {
+            errorList.add(UserValidationError.ID_ERROR.getErrorText());
+        }
+        if (errorList.isEmpty()) {
+            int count = Integer.parseInt(countString);
+            if (count < 3 || count > 10) {
+                errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
+            } else {
+                double i = placeDAO.countRecordsById(userId);
+                if (i != -1) {
+                    return (int) Math.ceil(i / count);
                 }
             }
         }

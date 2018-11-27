@@ -28,6 +28,9 @@ public class UserValidator implements Validator {
             if (isNullOrEmpty(user.getFirstName())) {
                 errorMessages.add(UserValidationError.NAME_EMPTY_ERROR.getErrorText());
             }
+            if (isNullOrEmpty(user.getLastName())) {
+                errorMessages.add(UserValidationError.NAME_EMPTY_ERROR.getErrorText());
+            }
             if (isNullOrEmpty(user.getCity())) {
                 errorMessages.add(UserValidationError.CITY_EMPTY_ERROR.getErrorText());
             }

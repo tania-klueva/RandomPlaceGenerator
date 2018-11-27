@@ -3,15 +3,20 @@
 <jsp:include page="../../WEB-INF/header.jsp"/>
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Places</h1>
+    <c:forEach items="${errors}" var="error">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                ${error}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:forEach>
     <main class="row">
         <c:if test="${isAuthorized == true}">
             <a id="redColor" class="add-new-place-button text-dark border p-3 bg-light" href="user/place/create">Add new
                 place</a>
         </c:if>
 
-        <c:forEach items="${errors}" var="error">
-            <p class="text-danger mx-auto">${error}</p>
-        </c:forEach>
         <c:forEach var="place" items="${places}">
             <div class="row w-100 border p-3 rounded m-3 bg-light">
                 <div class="col-md-5">
@@ -38,7 +43,6 @@
                         <span class="sr-only">Previous</span>
                     </a>
                 </li>
-            </c:if>
             <c:forEach begin="1" end="${numberOfPages}" var="i">
                 <c:choose>
                     <c:when test="${currentPage eq i}">
@@ -60,6 +64,8 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </li>
+            </c:if>
+
             </c:if>
         </ul>
     </nav>
