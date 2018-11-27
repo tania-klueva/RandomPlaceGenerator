@@ -1,7 +1,6 @@
 package com.randomplace.servlets.user;
 
-import com.randomplace.models.Role;
-import com.randomplace.models.User;
+import com.randomplace.dto.UserDTO;
 import com.randomplace.service.user.impl.UserService;
 import com.randomplace.utils.PagePath;
 
@@ -33,21 +32,19 @@ public class UserCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ArrayList<String> errorList = new ArrayList<>();
-        User user = new User();
-        user.setEmail(req.getParameter("email"));
-        user.setPassword(req.getParameter("password"));
-        user.setFirstName(req.getParameter("firstName"));
-        user.setLastName(req.getParameter("lastName"));
-        user.setCity(req.getParameter("city"));
-        user.setRole(Role.USER.getRole());
-        String passwordConfirm = req.getParameter("passwordConfirm");
-        System.out.println(user);
-        userService.save(user, passwordConfirm, errorList);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail(req.getParameter("email"));
+        userDTO.setNewPassword(req.getParameter("password"));
+        userDTO.setConfirmPassword(req.getParameter("passwordConfirm"));
+        userDTO.setFirstName(req.getParameter("firstName"));
+        userDTO.setLastName(req.getParameter("lastName"));
+        userDTO.setCity(req.getParameter("city"));
+        userService.save(userDTO, errorList);
         if (errorList.isEmpty()) {
             resp.sendRedirect("/signin");
         } else {
             req.setAttribute("errors", errorList);
-            req.setAttribute("user", user);
+            req.setAttribute("userDTO", userDTO);
             doGet(req, resp);
         }
     }

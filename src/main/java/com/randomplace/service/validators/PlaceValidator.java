@@ -17,8 +17,10 @@ public class PlaceValidator implements Validator {
         return ourInstance;
     }
 
+
+
     @Override
-    public void validate(List<String> errorMessages, Object object) {
+    public void validate(Object object, List<String> errorMessages) {
         Place place = (Place) object;
         if (place == null) {
             errorMessages.add(PlaceValidationError.PLACE_NULL.getErrorText());
@@ -43,6 +45,4 @@ public class PlaceValidator implements Validator {
             }
         }
     }
-
-
 }

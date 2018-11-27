@@ -1,10 +1,12 @@
 package com.randomplace.service.user.impl;
 
 import com.randomplace.dao.impl.UserDAO;
+import com.randomplace.dto.UserDTO;
 import com.randomplace.models.User;
 import com.randomplace.service.user.IUserService;
 import com.randomplace.service.validators.UserValidator;
 import com.randomplace.utils.PasswordEncoder;
+import com.randomplace.utils.UserUtils;
 import com.randomplace.utils.errorMessages.LoginError;
 import com.randomplace.utils.errorMessages.UserValidationError;
 
@@ -28,16 +30,17 @@ public class UserService implements IUserService {
         return ourInstance;
     }
 
+
     @Override
-    public void save(User user, String confirmPassword, List<String> errorList) {
-        if (userValidator.validatePasswords(user.getPassword(), confirmPassword, errorList)) {
-            userValidator.validate(errorList, user);
+    public void save(UserDTO userDTO, List<String> errorList) {
+        if (userValidator.validatePasswords(userDTO, errorList)) {
+            userValidator.validate(userDTO, errorList);
             if (errorList.isEmpty()) {
-                if (userDAO.findByEmail(user.getEmail()) != null) {
+                if (userDAO.findByEmail(userDTO.getEmail()) != null) {
                     errorList.add(UserValidationError.EMAIL_EXIST_ERROR.getErrorText());
                 } else {
-                    passwordEncoder.encodePassword(user);
-                    userDAO.save(user);
+                    passwordEncoder.encodePassword(userDTO);
+                    userDAO.save(UserUtils.getInstance().dtoToEntity(userDTO));
                 }
             }
         } else {
@@ -46,22 +49,21 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findByEmail(String email, List<String> errorList) {
-        if (userValidator.isNullOrEmpty(email)) {
+    public User findByEmail(UserDTO userDTO, List<String> errorList) {
+        if (userValidator.isNullOrEmpty(userDTO.getEmail())) {
             errorList.add(UserValidationError.EMAIL_EMPTY_ERROR.getErrorText());
         } else {
-            return userDAO.findByEmail(email);
+            return userDAO.findByEmail(userDTO.getEmail());
         }
         return null;
     }
 
-
     @Override
-    public User findById(String id, List<String> errorList) {
-        if (userValidator.isNullOrEmpty(id)) {
+    public User findById(UserDTO userDTO, List<String> errorList) {
+        if (userValidator.isNullOrEmpty(userDTO.getId())) {
             errorList.add(UserValidationError.ID_ERROR.getErrorText());
         } else {
-            int parseInt = Integer.parseInt(id);
+            int parseInt = Integer.parseInt(userDTO.getId());
             if (parseInt <= 0) {
                 errorList.add(UserValidationError.ID_ERROR.getErrorText());
             } else {
@@ -71,54 +73,46 @@ public class UserService implements IUserService {
         return null;
     }
 
-
     @Override
     public List<User> findAll() {
         return userDAO.findAll();
     }
 
     @Override
-    public User update(User user, List<String> errorList) {
-        userValidator.validate(errorList, user);
+    public void update(UserDTO userDTO, List<String> errorList) {
+        userValidator.validate(userDTO, errorList);
         if (errorList.isEmpty()) {
-            userDAO.update(user);
+            userDAO.update(UserUtils.getInstance().dtoToEntity(userDTO));
         }
-        return userDAO.findById(user.getId());
     }
 
     @Override
-    public User updatePassword(User user, String oldPassword, String newPassword, String confirmPassword, List<String> errorList) {
-        if (userValidator.isNullOrEmpty(oldPassword) || userValidator.isNullOrEmpty(newPassword) || userValidator.isNullOrEmpty(confirmPassword)) {
-            errorList.add(UserValidationError.PASSWORD_EMPTY_ERROR.getErrorText());
+    public void updatePassword(UserDTO userDTO, List<String> errorList) {
+        userValidator.validatePasswords(userDTO, errorList);
+        if (!passwordEncoder.isMatches(userDTO)) {
+            errorList.add(LoginError.PASSWORD_ERROR.getErrorText());
         } else {
-            if (!passwordEncoder.isMatches(oldPassword, user.getPassword())) {
-                errorList.add(LoginError.PASSWORD_ERROR.getErrorText());
-            } else {
-                userValidator.validatePasswords(newPassword, confirmPassword, errorList);
-                if (errorList.isEmpty()) {
-                    user.setPassword(newPassword);
-                    passwordEncoder.encodePassword(user);
-                    userDAO.updatePassword(user);
-                }
+            if (errorList.isEmpty()) {
+                passwordEncoder.encodePassword(userDTO);
+                userDAO.updatePassword(UserUtils.getInstance().dtoToEntity(userDTO));
             }
         }
 
-        return userDAO.findById(user.getId());
     }
 
     @Override
-    public void deleteById(String id, List<String> errorList) {
-        if (userValidator.isNullOrEmpty(id)) {
+    public void deleteById(UserDTO userDTO, List<String> errorList) {
+        if (userValidator.isNullOrEmpty(userDTO.getId())) {
             errorList.add(UserValidationError.ID_ERROR.getErrorText());
         } else {
-            int parseInt = Integer.parseInt(id);
+            int parseInt = Integer.parseInt(userDTO.getId());
             if (parseInt <= 0) {
                 errorList.add(UserValidationError.ID_ERROR.getErrorText());
             } else {
                 userDAO.deleteById(parseInt);
             }
         }
-
     }
+
 
 }

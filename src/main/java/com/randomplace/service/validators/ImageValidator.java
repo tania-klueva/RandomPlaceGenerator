@@ -16,8 +16,9 @@ public class ImageValidator implements Validator {
         return ourInstance;
     }
 
+
     @Override
-    public void validate(List<String> errorMessages, Object object) {
+    public void validate(Object object, List<String> errorMessages) {
         String contentType = (String) object;
         switch (contentType) {
             case ".jpg":
@@ -37,6 +38,4 @@ public class ImageValidator implements Validator {
                 break;
         }
     }
-
-
 }

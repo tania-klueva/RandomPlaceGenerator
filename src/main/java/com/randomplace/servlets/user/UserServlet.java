@@ -1,5 +1,6 @@
 package com.randomplace.servlets.user;
 
+import com.randomplace.dto.UserDTO;
 import com.randomplace.models.Place;
 import com.randomplace.models.User;
 import com.randomplace.security.UserSession;
@@ -34,26 +35,29 @@ public class UserServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User currentUser = UserSession.getCurrentUser(req);
+        UserDTO userDTO = new UserDTO();
         List<String> errorList = new ArrayList<>();
         if (currentUser != null) {
+            userDTO.setId(String.valueOf(currentUser.getId()));
             String edit = req.getParameter("edit");
             if (edit != null) {
                 if (edit.equals("password")) {
-                    userService.updatePassword(currentUser, req.getParameter("oldPassword"), req.getParameter("newPassword"), req.getParameter("passwordConfirm"), errorList);
+                    userDTO.setEncryptedPassword(currentUser.getPassword());
+                    userDTO.setCurrentPassword(req.getParameter("oldPassword"));
+                    userDTO.setNewPassword(req.getParameter("password"));
+                    userDTO.setConfirmPassword(req.getParameter("passwordConfirm"));
+                    userService.updatePassword(userDTO, errorList);
                     if (!errorList.isEmpty()){
                         req.setAttribute("errors", errorList);
                     }else{
                         req.setAttribute("success", "Password changed");
                     }
-
                 } else if (edit.equals("info")) {
-                    User user = new User();
-                    user.setId(currentUser.getId());
-                    user.setEmail(req.getParameter("email"));
-                    user.setFirstName(req.getParameter("firstName"));
-                    user.setLastName(req.getParameter("lastName"));
-                    user.setCity(req.getParameter("city"));
-                    userService.update(user, errorList);
+                    userDTO.setEmail(req.getParameter("email"));
+                    userDTO.setFirstName(req.getParameter("firstName"));
+                    userDTO.setLastName(req.getParameter("lastName"));
+                    userDTO.setCity(req.getParameter("city"));
+                    userService.update(userDTO, errorList);
                     if (!errorList.isEmpty()) {
                         req.setAttribute("errors", errorList);
                     } else {

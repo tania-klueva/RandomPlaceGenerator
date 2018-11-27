@@ -1,5 +1,6 @@
 package com.randomplace.service.login;
 
+import com.randomplace.dto.UserDTO;
 import com.randomplace.models.User;
 import com.randomplace.service.user.impl.UserService;
 import com.randomplace.utils.PasswordEncoder;
@@ -22,19 +23,17 @@ public class LoginService {
         return ourInstance;
     }
 
-    public User login(String email, String password, List<String> errorList) {
-        User user = null;
-        User userDB = userService.findByEmail(email, errorList);
+    public User login(UserDTO userDTO, List<String> errorList) {
+        User userDB = userService.findByEmail(userDTO, errorList);
         if (userDB == null) {
             errorList.add(LoginError.EMAIL_NOT_EXIST.getErrorText());
         } else {
-            if (!passwordEncoder.isMatches(password, userDB.getPassword())) {
+            userDTO.setEncryptedPassword(userDB.getPassword());
+            if (!passwordEncoder.isMatches(userDTO)){
                 errorList.add(LoginError.PASSWORD_ERROR.getErrorText());
-            } else {
-                user = userDB;
             }
         }
-        return user;
+        return userDB;
     }
 
 }

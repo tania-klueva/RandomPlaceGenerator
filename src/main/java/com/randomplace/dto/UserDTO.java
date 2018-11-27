@@ -1,9 +1,12 @@
 package com.randomplace.dto;
 
+import java.util.Objects;
+
 public class UserDTO {
     private String id;
     private String email;
-    private String password;
+    private String currentPassword;
+    private String newPassword;
     private String confirmPassword;
     private String encryptedPassword;
     private String firstName;
@@ -29,12 +32,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCurrentPassword() {
+        return currentPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
     }
 
     public String getConfirmPassword() {
@@ -75,5 +78,49 @@ public class UserDTO {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(id, userDTO.id) &&
+                Objects.equals(email, userDTO.email) &&
+                Objects.equals(currentPassword, userDTO.currentPassword) &&
+                Objects.equals(newPassword, userDTO.newPassword) &&
+                Objects.equals(confirmPassword, userDTO.confirmPassword) &&
+                Objects.equals(encryptedPassword, userDTO.encryptedPassword) &&
+                Objects.equals(firstName, userDTO.firstName) &&
+                Objects.equals(lastName, userDTO.lastName) &&
+                Objects.equals(city, userDTO.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, currentPassword, newPassword, confirmPassword, encryptedPassword, firstName, lastName, city);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", currentPassword='" + currentPassword + '\'' +
+                ", newPassword='" + newPassword + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", encryptedPassword='" + encryptedPassword + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 }

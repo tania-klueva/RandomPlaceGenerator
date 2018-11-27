@@ -41,11 +41,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password-confirm" class="col-sm-3 col-form-label">Repeat password</label>
+                <label for="password-confirm" class="col-sm-3 col-form-label">Confirm password</label>
                 <div class="col-sm-9">
                     <input type="password" name="passwordConfirm" class="form-control"
                            id="password-confirm" value=""
-                           placeholder="Enter password once again" required data-match="#password">
+                           placeholder="Enter password once again" required data-match="#currentPassword">
                     <div class="invalid-feedback">
                         Password do not matches.
                     </div>

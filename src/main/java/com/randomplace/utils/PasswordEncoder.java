@@ -1,6 +1,6 @@
 package com.randomplace.utils;
 
-import com.randomplace.models.User;
+import com.randomplace.dto.UserDTO;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordEncoder {
@@ -14,11 +14,11 @@ public class PasswordEncoder {
         return ourInstance;
     }
 
-    public void encodePassword(User user) {
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+    public void encodePassword(UserDTO user) {
+        user.setEncryptedPassword(BCrypt.hashpw(user.getNewPassword(), BCrypt.gensalt()));
     }
 
-    public boolean isMatches(String password, String encryptedPassword) {
-        return BCrypt.checkpw(password, encryptedPassword);
+    public boolean isMatches(UserDTO userDTO) {
+        return BCrypt.checkpw(userDTO.getCurrentPassword(), userDTO.getEncryptedPassword());
     }
 }

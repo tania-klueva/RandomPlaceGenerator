@@ -35,7 +35,7 @@ public class ImageService {
     public String writeFile(Part file, List<String> errorList) {
         try {
             String fileName = createFileName(file);
-            validator.validate(errorList, getContentType(file));
+            validator.validate(getContentType(file), errorList);
             try {
                 Files.createDirectory(Paths.get(PATH));
             } catch (Exception ignored) {

@@ -28,7 +28,7 @@
                            id="login-password" value=""
                            placeholder="Enter password" required>
                     <div class="invalid-feedback">
-                        Please provide a valid password.
+                        Please provide a valid currentPassword.
                     </div>
                     <div class="valid-feedback">
                         Looks good!

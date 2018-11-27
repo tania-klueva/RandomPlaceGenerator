@@ -30,9 +30,11 @@
                 <a class="nav-link" id="edit-pills-tab" data-toggle="pill" href="#edit-pills" role="tab"
                    aria-controls="edit-pills" aria-selected="false"><i class="fas fa-user-edit"></i> Edit personal info
                 </a>
-                <a class="nav-link" id="edit-password-pills-tab" data-toggle="pill" href="#edit-password-pills"
+                <a class="nav-link" id="edit-currentPassword-pills-tab" data-toggle="pill"
+                   href="#edit-currentPassword-pills"
                    role="tab"
-                   aria-controls="edit-password-pills" aria-selected="false"><i class="fas fa-user-shield"></i> Change
+                   aria-controls="edit-currentPassword-pills" aria-selected="false"><i class="fas fa-user-shield"></i>
+                    Change
                     password</a>
                 <a class="nav-link" id="place-pills-tab" data-toggle="pill" href="#place-pills"
                    role="tab"
@@ -121,16 +123,16 @@
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane fade  p-3" id="edit-password-pills" role="tabpanel"
-                     aria-labelledby="edit-password-pills-tab">
-                    <form method="post" action="<c:url value="/user/page?edit=password"/>"
+                <div class="tab-pane fade  p-3" id="edit-currentPassword-pills" role="tabpanel"
+                     aria-labelledby="edit-currentPassword-pills-tab">
+                    <form method="post" action="<c:url value="/user/page?edit=currentPassword"/>"
                           class="creation-form needs-validation" novalidate>
                         <div class="form-group row">
-                            <label for="old-password" class="col-sm-3 col-form-label">Password</label>
+                            <label for="old-password" class="col-sm-3 col-form-label">Your current password</label>
                             <div class="col-sm-9">
                                 <input type="password" name="oldPassword" class="form-control"
                                        id="old-password" value=""
-                                       placeholder="Enter old password" required pattern="[a-zA-Z0-9]{6,20}">
+                                       placeholder="Enter current password" required pattern="[a-zA-Z0-9]{6,20}">
                                 <div class="invalid-feedback">
                                     Please provide a valid password.
                                 </div>
@@ -140,10 +142,10 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-sm-3 col-form-label">Password</label>
+                            <label for="currentPassword" class="col-sm-3 col-form-label">Your new password</label>
                             <div class="col-sm-9">
                                 <input type="password" name="newPassword" class="form-control"
-                                       id="password" value=""
+                                       id="currentPassword" value=""
                                        placeholder="Enter new password" required pattern="[a-zA-Z0-9]{6,20}">
                                 <div class="invalid-feedback">
                                     Please provide a valid password.
@@ -154,11 +156,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-sm-3 col-form-label">Repeat
+                            <label for="currentPassword-confirm" class="col-sm-3 col-form-label">Repeat
                                 password</label>
                             <div class="col-sm-9">
                                 <input type="password" name="passwordConfirm" class="form-control"
-                                       id="password-confirm" value=""
+                                       id="currentPassword-confirm" value=""
                                        placeholder="Enter password once again" required>
                                 <div class="invalid-feedback">
                                     Password do not matches.
@@ -176,7 +178,7 @@
                     </form>
                 </div>
 
-                <div class="tab-pane fade  p-3" id="place-pills" role="tabpanel"
+                <div class="tab-pane fade p-3" id="place-pills" role="tabpanel"
                      aria-labelledby="place-pills-tab">
                     <c:forEach items="${userPlaceErrors}" var="userPlaceError">
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -202,17 +204,20 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <nav aria-label="pagination">
-                        <ul class="pagination justify-content-center">
-                            <c:if test="${page != 1}">
-                                <li class="page-item">
-                                    <a class="page-link" href="/user/page?items=${5}&page=${page-1}"
-                                       aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                            </c:if>
+                    <c:if test="${numberOfPages > 1}">
+                        <nav aria-label="pagination">
+                            <ul class="pagination justify-content-center">
+
+                                <c:if test="${page != 1}">
+                                    <li class="page-item">
+                                        <a class="page-link" href="/user/page?items=${5}&page=${page-1}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
                                 <c:forEach begin="1" end="${numberOfPages}" var="i">
                                     <c:choose>
                                         <c:when test="${currentPage eq i}">
@@ -227,6 +232,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
+
                                 <c:if test="${page lt numberOfPages}">
                                     <li class="page-item">
                                         <a class="page-link" href="/user/page=${5}&page=${page+1}" aria-label="Next">
@@ -236,8 +242,9 @@
                                     </li>
                                 </c:if>
 
-                        </ul>
-                    </nav>
+                            </ul>
+                        </nav>
+                    </c:if>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ public class PlaceService implements IPlaceService {
 
     @Override
     public void save(Place place, List<String> errorList) {
-        validator.validate(errorList, place);
+        validator.validate(place, errorList);
         if (errorList.isEmpty()) {
             placeDAO.save(place);
         }
@@ -142,7 +142,7 @@ public class PlaceService implements IPlaceService {
 
     @Override
     public void update(Place place, List<String> errorList) {
-        validator.validate(errorList, place);
+        validator.validate(place, errorList);
         if (errorList.isEmpty()) {
             placeDAO.update(place);
         }

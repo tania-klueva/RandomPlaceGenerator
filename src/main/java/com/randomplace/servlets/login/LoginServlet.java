@@ -1,5 +1,6 @@
 package com.randomplace.servlets.login;
 
+import com.randomplace.dto.UserDTO;
 import com.randomplace.models.User;
 import com.randomplace.security.UserSession;
 import com.randomplace.service.login.LoginService;
@@ -31,9 +32,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> errorList = new ArrayList<>();
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
-        User user = loginService.login(email, password, errorList);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail(req.getParameter("email"));
+        userDTO.setCurrentPassword(req.getParameter("password"));
+        User user = loginService.login(userDTO, errorList);
         if (errorList.isEmpty()) {
             UserSession.addUser(req, user);
             resp.sendRedirect("/");

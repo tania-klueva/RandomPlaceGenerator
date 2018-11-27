@@ -1,6 +1,6 @@
 package com.randomplace.service.validators;
 
-import com.randomplace.models.User;
+import com.randomplace.dto.UserDTO;
 import com.randomplace.utils.errorMessages.UserValidationError;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class UserValidator implements Validator {
     }
 
     @Override
-    public void validate(List<String> errorMessages, Object object) {
-        User user = (User) object;
+    public void validate(Object object, List<String> errorMessages) {
+        UserDTO user = (UserDTO) object;
         if (user == null) {
             errorMessages.add(UserValidationError.USER_NULL.getErrorText());
         } else {
@@ -42,13 +42,14 @@ public class UserValidator implements Validator {
     }
 
 
-    public boolean validatePasswords(String password, String confirmPassword, List<String> errorMessages) {
-        if (isNullOrEmpty(password)) {
+    public boolean validatePasswords(Object object, List<String> errorMessages) {
+        UserDTO user = (UserDTO) object;
+        if (isNullOrEmpty(user.getNewPassword())) {
             errorMessages.add(UserValidationError.PASSWORD_EMPTY_ERROR.getErrorText());
-        } else if (password.length() < 6 || password.length() > 20) {
+        } else if (user.getNewPassword().length() < 6 || user.getNewPassword().length() > 20) {
             errorMessages.add(UserValidationError.PASSWORD_LENGTH_ERROR.getErrorText());
         } else {
-            return password.equals(confirmPassword);
+            return user.getNewPassword().equals(user.getConfirmPassword());
         }
         return false;
     }
