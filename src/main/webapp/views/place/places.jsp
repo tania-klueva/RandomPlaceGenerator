@@ -3,6 +3,38 @@
 <jsp:include page="../../WEB-INF/header.jsp"/>
 <div class="container p-5">
     <h1 class="text-center py-5 m-after-nav">Places</h1>
+    <div class="row">
+        <form class="w-100 m-3 border p-3 rounded bg-light" action="/place">
+            <label class="sr-only text-secondary" for="page">Name</label>
+            <input type="hidden" id="page" name="page" value="1">
+            <div class="form-row w-100">
+                <div class="form-group col-sm-4 col-md-4">
+                    <label class="text-secondary" for="search">Search by name</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="search" name="search" value="${search}" placeholder="Enter word which place's name should contain">
+                </div>
+                <div class="form-group col-sm-4 col-md-3">
+                    <label class="text-secondary"  for="items">Items per page</label>
+                    <select class="form-control mb-2 mr-sm-2" name="items" id="items">
+                        <option>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-4 col-md-3">
+                    <label class="text-secondary" for="sort">Sort by</label>
+                    <select class="form-control mb-2 mr-sm-2" name="sort" id="sort">
+                        <option>Name</option>
+                        <option>Specification</option>
+                        <option>City</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-4 col-md-2 d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn custom-blue-button ">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <c:forEach items="${errors}" var="error">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 ${error}
@@ -17,9 +49,6 @@
                 place</a>
         </c:if>
 
-        <form action="/place">
-
-        </form>
 
         <c:forEach var="place" items="${places}">
             <div class="row w-100 border p-3 rounded m-3 bg-light">
@@ -44,7 +73,7 @@
 
                 <c:if test="${page != 1}">
                     <li class="page-item">
-                        <a class="page-link" href="/place?items=${20}&page=${page-1}" aria-label="Previous">
+                        <a class="page-link" href="/place?items=${20}&page=${page-1}&sort=${sort}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -60,7 +89,7 @@
                         </c:when>
                         <c:otherwise>
                             <li class="page-item"><a class="page-link"
-                                                     href="/place?items=${20}&page=${i}">${i}</a>
+                                                     href="/place?items=${items}&page=${i}&sort=${sort}">${i}</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
@@ -68,7 +97,7 @@
 
                 <c:if test="${page lt numberOfPages}">
                     <li class="page-item">
-                        <a class="page-link" href="/place?items=${20}&page=${page+1}" aria-label="Next">
+                        <a class="page-link" href="/place?items=${items}&page=${page+1}&sort=${sort}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>

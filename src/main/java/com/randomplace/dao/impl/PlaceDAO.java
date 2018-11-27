@@ -133,11 +133,11 @@ public class PlaceDAO implements IPlaceDAO {
     }
 
     @Override
-    public List<Place> findAllForPages(int page, int count, String fieldToSortBy) {
+    public List<Place> findAllForPages(int page, int count, String fieldToSortBy, String search) {
         try {
             List<Place> places = new ArrayList<>();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places ORDER BY ? LIMIT ? OFFSET ?");
-            preparedStatement.setString(1, fieldToSortBy);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places WHERE `name` LIKE ? ORDER BY " + fieldToSortBy +" LIMIT ? OFFSET ?");
+            preparedStatement.setString(1, "%"+search+"%");
             preparedStatement.setInt(2, count);
             preparedStatement.setInt(3, count * (page - 1));
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -153,7 +153,7 @@ public class PlaceDAO implements IPlaceDAO {
     public List<Place> findForPagesByUserId(int userId, int page, int count, String fieldToSortBy) {
         try {
             List<Place> places = new ArrayList<>();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places WHERE userId = ? ORDER BY ? LIMIT ? OFFSET ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places WHERE `userId` = ? ORDER BY ? LIMIT ? OFFSET ?");
             preparedStatement.setInt(1, userId);
             preparedStatement.setString(2, fieldToSortBy);
             preparedStatement.setInt(3, count);
@@ -205,7 +205,22 @@ public class PlaceDAO implements IPlaceDAO {
     @Override
     public int countRecords() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(id) from Places ");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(id) from Places");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    @Override
+    public int countRecords(String search) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(id) from Places  WHERE `name` LIKE ?");
+            preparedStatement.setString(1, "%"+search+"%");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt(1);

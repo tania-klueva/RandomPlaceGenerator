@@ -33,22 +33,25 @@ public class PlaceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> errorList = new ArrayList<>();
         User currentUser = UserSession.getCurrentUser(req);
-        System.out.println("USER IS" + currentUser);
         String id = req.getParameter("id");
         if (Validator.isNullOrEmpty(id)) {
             String page = req.getParameter("page");
             String items = req.getParameter("items");
+            String sort = req.getParameter("sort");
+            String search = req.getParameter("search");
+
             if (Validator.isNullOrEmpty(page) || Validator.isNullOrEmpty(items)) {
                 page = "1";
-                items = "20";
+                items = "10";
             }
-            int numberOfPages = placeService.countNumberOfPages(items, errorList);
-            List<Place> allByPage = placeService.findAllByPage(page, items, PlaceSortingField.ID, errorList);
-            System.out.println("PLACES  " + allByPage);
+            int numberOfPages = placeService.countNumberOfPages(items, search, errorList);
+            List<Place> allByPage = placeService.findAllByPage(page, items, sort, search, errorList);
             if (errorList.isEmpty()) {
                 req.setAttribute("places", allByPage);
+                req.setAttribute("items", items);
                 req.setAttribute("page", page);
                 req.setAttribute("numberOfPages", numberOfPages);
+                req.setAttribute("sort", sort);
                 req.getRequestDispatcher(PagePath.PLACE_LIST).forward(req, resp);
             }
         } else {

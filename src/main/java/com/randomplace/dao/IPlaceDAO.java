@@ -15,7 +15,7 @@ public interface IPlaceDAO {
 
     List<Place> findAll();
 
-    List<Place> findAllForPages(int page, int count, String fieldToSortBy);
+    List<Place> findAllForPages(int page, int count, String fieldToSortBy, String stringToFind);
 
     List<Place> findForPagesByUserId(int userId, int page, int count, String fieldToSortBy);
 
@@ -24,6 +24,8 @@ public interface IPlaceDAO {
     void deleteById(int id);
 
     int countRecords();
+
+    int countRecords(String search);
 
     int countRecordsById(int userId);
 }

@@ -18,14 +18,17 @@ public interface IPlaceService {
 
     List<Place> findAll();
 
-    List<Place> findAllByPage(String page, String count, PlaceSortingField field, List<String> errorList);
-    List<Place> findForPagesByUserId(int userId, String page, String count, PlaceSortingField field, List<String> errorList);
+    List<Place> findAllByPage(String pageString, String countString, String sort, String search, List<String> errorList);
+
+    List<Place> findForPagesByUserId(int userId, String pageString, String countString, String sort, List<String> errorList);
 
     void update(Place place, List<String> errorList);
 
     void deleteById(String id, List<String> errorList);
 
-    int countNumberOfPages(String count, List<String> errorList);
+    int countNumberOfPages(String countString, String search, List<String> errorList);
 
     int countNumberOfPagesByUserId(int userId, String count, List<String> errorList);
+
+    PlaceSortingField parseStringToSortField(String s);
 }

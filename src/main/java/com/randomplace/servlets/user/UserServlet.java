@@ -81,7 +81,7 @@ public class UserServlet extends HttpServlet {
                 items = "5";
             }
             int numberOfPages = placeService.countNumberOfPagesByUserId( currentUser.getId() ,items, errorList);
-            List<Place> allByPage = placeService.findForPagesByUserId(currentUser.getId() ,page, items, PlaceSortingField.ID, errorList);
+            List<Place> allByPage = placeService.findForPagesByUserId(currentUser.getId() ,page, items, "id", errorList);
             if (errorList.isEmpty()) {
                 req.setAttribute("places", allByPage);
                 req.setAttribute("page", page);
