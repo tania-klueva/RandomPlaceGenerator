@@ -7,7 +7,7 @@
         <h2 class="text-center font-weight-light">About us</h2>
         <div class="p-5 border rounded desc-block bg-light">
             <div class="row">
-                <div class="col">
+                <div class="col-lg-6 d-flex flex-column justify-content-center align-items-stretch">
                     <div class="row">
                         <div class="col-4"><p class="">Specification</p></div>
                         <div class="col-8"><p class="text-secondary">${place.specification}</p></div>
@@ -20,14 +20,12 @@
                         <div class="col-4"><p class="">Address</p></div>
                         <div class="col-8"><p class="text-secondary">${place.address}</p></div>
                     </div>
-                    <div class="row">
-                        <div class="col-4"><p class="">About</p></div>
-                        <div class="col-8"><p class="text-secondary">${place.description}</p></div>
-
-                    </div>
                 </div>
-                <div class="col">
+                <div class="col-lg-6">
                     <img src="/image?fileName=${place.imagePath}" class="rounded img-fluid"/>
+                </div>
+                <div class="row p-5">
+                    <p class="text-secondary description">${place.description}</p>
                 </div>
 
             </div>

@@ -28,6 +28,14 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.height-300{
+    height: 300px;
+}
+
+.overflow-hidden{
+    overflow: hidden;
+}
+
 /*NAVIGATION*/
 /**/
 /**/
@@ -287,6 +295,10 @@ body {
     bottom: 0;
 }
 
+
+.description{
+    text-align: justify;
+}
 /*CREATEPLACE*/
 /**/
 /**/

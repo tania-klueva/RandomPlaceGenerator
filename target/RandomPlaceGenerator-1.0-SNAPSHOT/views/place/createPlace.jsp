@@ -42,6 +42,7 @@
                         <option value="Sushi">Sushi</option>
                         <option value="Fast food">Fast food</option>
                         <option value="Vegetarian food">Vegetarian food</option>
+                        <option value="Ukrainian food">Ukrainian food</option>
                         <option value="Japan food">Japan food</option>
                         <option value="Italian food">Italian food</option>
                         <option value="European food">European food</option>

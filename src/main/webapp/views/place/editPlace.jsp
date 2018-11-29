@@ -12,7 +12,7 @@
             </button>
         </div>
     </c:forEach>
-        <form method="post" action="user/place/edit" enctype="multipart/form-data" class="creation-form needs-validation" novalidate>
+        <form method="post" action="/user/place/edit" enctype="multipart/form-data" class="creation-form needs-validation" novalidate>
             <input type="hidden" name="placeId" value="${place.id}">
             <div class="form-group row">
                 <label for="pName" class="col-sm-3 col-form-label">Name</label>
@@ -30,9 +30,24 @@
             <div class="form-group row">
                 <label for="pSpecification" class="col-sm-3 col-form-label">Specification</label>
                 <div class="col-sm-9">
-                    <input type="text" name="specification" class="form-control"
-                           id="pSpecification" value="${place.specification}"
-                           placeholder="Enter place`s specification" required>
+                    <select name="specification" class="form-control"
+                            id="pSpecification" value="${place.specification}" required>
+                        <option value="Cafe">Cafe</option>
+                        <option value="Pub">Pub</option>
+                        <option value="Bar">Bar</option>
+                        <option value="Steak">Steak</option>
+                        <option value="BBQ">BBQ</option>
+                        <option value="Seafood">Seafood</option>
+                        <option value="Pizza">Pizza</option>
+                        <option value="Sushi">Sushi</option>
+                        <option value="Fast food">Fast food</option>
+                        <option value="Vegetarian food">Vegetarian food</option>
+                        <option value="Ukrainian food">Ukrainian food</option>
+                        <option value="Japan food">Japan food</option>
+                        <option value="Italian food">Italian food</option>
+                        <option value="European food">European food</option>
+                        <option value="International food">International food</option>
+                    </select>
                     <div class="invalid-feedback">
                         <i class="fas fa-ban"></i> Please provide a valid specification.
                     </div>

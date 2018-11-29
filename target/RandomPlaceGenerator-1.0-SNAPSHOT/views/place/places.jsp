@@ -10,11 +10,11 @@
             <div class="form-row w-100">
                 <div class="form-group col-sm-4 col-md-4">
                     <label class="text-secondary" for="search">Search by name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="search" name="search" value="${search}" placeholder="Enter word which place's name should contain">
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="search" name="search" value="${search}" placeholder="Search...">
                 </div>
                 <div class="form-group col-sm-4 col-md-3">
                     <label class="text-secondary"  for="items">Items per page</label>
-                    <select class="form-control mb-2 mr-sm-2" name="items" id="items">
+                    <select class="form-control mb-2 mr-sm-2" name="items" id="items" >
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
@@ -52,9 +52,9 @@
 
         <c:forEach var="place" items="${places}">
             <div class="row w-100 border p-3 rounded m-3 bg-light">
-                <div class="col-md-5">
+                <div class="col-md-5 overflow-hidden">
                     <img src="/image?fileName=${place.imagePath}"
-                         class="img-fluid rounded" alt="">
+                         class="img-fluid rounded overflow-hidden" alt="">
                 </div>
                 <div class="col-md-7">
                     <h3>${place.name}</h3>

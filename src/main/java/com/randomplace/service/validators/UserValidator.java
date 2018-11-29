@@ -18,20 +18,23 @@ public class UserValidator implements Validator {
 
     @Override
     public void validate(Object object, List<String> errorMessages) {
-        UserDTO user = (UserDTO) object;
-        if (user == null) {
+        UserDTO userDTO = (UserDTO) object;
+        if (userDTO == null) {
             errorMessages.add(UserValidationError.USER_NULL.getErrorText());
         } else {
-            if (isNullOrEmpty(user.getEmail())) {
+            if (isNullOrEmpty(userDTO.getEmail())) {
                 errorMessages.add(UserValidationError.EMAIL_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(user.getFirstName())) {
+            if (userDTO.getEmail().indexOf("@") <= 0 || userDTO.getEmail().indexOf(".") < userDTO.getEmail().indexOf("@")) {
+                errorMessages.add(UserValidationError.EMAIL_FORMAT_ERROR.getErrorText());
+            }
+            if (isNullOrEmpty(userDTO.getFirstName())) {
                 errorMessages.add(UserValidationError.NAME_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(user.getLastName())) {
+            if (isNullOrEmpty(userDTO.getLastName())) {
                 errorMessages.add(UserValidationError.NAME_EMPTY_ERROR.getErrorText());
             }
-            if (isNullOrEmpty(user.getCity())) {
+            if (isNullOrEmpty(userDTO.getCity())) {
                 errorMessages.add(UserValidationError.CITY_EMPTY_ERROR.getErrorText());
             }
         }

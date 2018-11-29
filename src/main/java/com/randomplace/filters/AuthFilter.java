@@ -18,7 +18,6 @@ public class AuthFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         HttpSession session =((HttpServletRequest) req).getSession();
         Object attribute = session.getAttribute("user");
-        System.out.println(attribute);
         if (attribute == null) {
             req.setAttribute("isAuthorized", false);
         } else {

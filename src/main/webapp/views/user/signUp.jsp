@@ -30,7 +30,7 @@
                 <label for="password" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control"
-                           id="password" value=""
+                           id="password" value="${user.newPassword}"
                            placeholder="Enter password" required pattern="[a-zA-Z0-9]{6,20}">
                     <div class="invalid-feedback">
                         <i class="fas fa-ban"></i> Please provide a valid password.

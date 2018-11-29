@@ -12,7 +12,8 @@
                 </button>
             </div>
         </c:forEach>
-        <form method="post" action="/user/place/create" enctype="multipart/form-data" class="creation-form needs-validation" novalidate>
+        <form method="post" action="/user/place/create" enctype="multipart/form-data"
+              class="creation-form needs-validation" novalidate>
             <input type="hidden" value="${place.id}">
             <div class="form-group row">
                 <label for="pName" class="col-sm-3 col-form-label">Name</label>
@@ -42,6 +43,7 @@
                         <option value="Sushi">Sushi</option>
                         <option value="Fast food">Fast food</option>
                         <option value="Vegetarian food">Vegetarian food</option>
+                        <option value="Ukrainian food">Ukrainian food</option>
                         <option value="Japan food">Japan food</option>
                         <option value="Italian food">Italian food</option>
                         <option value="European food">European food</option>
