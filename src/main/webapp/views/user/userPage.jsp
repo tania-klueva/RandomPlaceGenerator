@@ -30,10 +30,10 @@
                 <a class="nav-link" id="edit-pills-tab" data-toggle="pill" href="#edit-pills" role="tab"
                    aria-controls="edit-pills" aria-selected="false"><i class="fas fa-user-edit"></i> Edit personal info
                 </a>
-                <a class="nav-link" id="edit-currentPassword-pills-tab" data-toggle="pill"
-                   href="#edit-currentPassword-pills"
+                <a class="nav-link" id="edit-password-pills-tab" data-toggle="pill"
+                   href="#edit-password-pills"
                    role="tab"
-                   aria-controls="edit-currentPassword-pills" aria-selected="false"><i class="fas fa-user-shield"></i>
+                   aria-controls="edit-password-pills" aria-selected="false"><i class="fas fa-user-shield"></i>
                     Change
                     password</a>
                 <a class="nav-link" id="place-pills-tab" data-toggle="pill" href="#place-pills"
@@ -82,10 +82,10 @@
                                        placeholder="Enter yout first name"
                                        required>
                                 <div class="invalid-feedback">
-                                    Please provide a valid email.
+                                    <i class="fas fa-ban"></i> Please provide a valid email.
                                 </div>
                                 <div class="valid-feedback">
-                                    Looks good!
+                                    <i class="far fa-check-circle"></i> Good!
                                 </div>
                             </div>
                         </div>
@@ -96,10 +96,10 @@
                                        id="last-name" value="${user.lastName}"
                                        placeholder="Enter your last name" required>
                                 <div class="invalid-feedback">
-                                    Please provide a valid name.
+                                    <i class="fas fa-ban"></i> Please provide a valid name.
                                 </div>
                                 <div class="valid-feedback">
-                                    Looks good!
+                                    <i class="far fa-check-circle"></i> Good!
                                 </div>
                             </div>
                         </div>
@@ -109,10 +109,10 @@
                                 <input type="text" name="city" class="form-control"
                                        id="city" value="${user.city}" placeholder="Enter your city" required>
                                 <div class="invalid-feedback">
-                                    Please provide a valid city.
+                                    <i class="fas fa-ban"></i> Please provide a valid city.
                                 </div>
                                 <div class="valid-feedback">
-                                    Looks good!
+                                    <i class="far fa-check-circle"></i> Good!
                                 </div>
                             </div>
                         </div>
@@ -123,9 +123,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane fade  p-3" id="edit-currentPassword-pills" role="tabpanel"
-                     aria-labelledby="edit-currentPassword-pills-tab">
-                    <form method="post" action="<c:url value="/user/page?edit=currentPassword"/>"
+                <div class="tab-pane fade  p-3" id="edit-password-pills" role="tabpanel"
+                     aria-labelledby="edit-password-pills-tab">
+                    <form method="post" action="<c:url value="/user/page?edit=password"/>"
                           class="creation-form needs-validation" novalidate>
                         <div class="form-group row">
                             <label for="old-password" class="col-sm-3 col-form-label">Your current password</label>
@@ -134,39 +134,39 @@
                                        id="old-password" value=""
                                        placeholder="Enter current password" required pattern="[a-zA-Z0-9]{6,20}">
                                 <div class="invalid-feedback">
-                                    Please provide a valid password.
+                                    <i class="fas fa-ban"></i> Please provide a valid password.
                                 </div>
                                 <div class="valid-feedback">
-                                    Looks good!
+                                    <i class="far fa-check-circle"></i> Good!
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="currentPassword" class="col-sm-3 col-form-label">Your new password</label>
+                            <label for="password" class="col-sm-3 col-form-label">Your new password</label>
                             <div class="col-sm-9">
                                 <input type="password" name="newPassword" class="form-control"
-                                       id="currentPassword" value=""
+                                       id="password" value=""
                                        placeholder="Enter new password" required pattern="[a-zA-Z0-9]{6,20}">
                                 <div class="invalid-feedback">
-                                    Please provide a valid password.
+                                    <i class="fas fa-ban"></i> Please provide a valid password.
                                 </div>
                                 <div class="valid-feedback">
-                                    Looks good!
+                                    <i class="far fa-check-circle"></i> Good!
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="currentPassword-confirm" class="col-sm-3 col-form-label">Repeat
+                            <label for="password-confirm" class="col-sm-3 col-form-label">Repeat
                                 password</label>
                             <div class="col-sm-9">
                                 <input type="password" name="passwordConfirm" class="form-control"
-                                       id="currentPassword-confirm" value=""
+                                       id="password-confirm" value=""
                                        placeholder="Enter password once again" required>
                                 <div class="invalid-feedback">
                                     Password do not matches.
                                 </div>
                                 <div class="valid-feedback">
-                                    Looks good!
+                                    <i class="far fa-check-circle"></i> Good!
                                 </div>
                             </div>
                         </div>

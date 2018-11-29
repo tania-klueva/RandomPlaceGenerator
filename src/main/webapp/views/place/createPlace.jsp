@@ -20,24 +20,38 @@
                     <input type="text" name="name" class="form-control"
                            id="pName" value="${place.name}" placeholder="Enter place`s name" required>
                     <div class="invalid-feedback">
-                        Please provide a valid name.
+                        <i class="fas fa-ban"></i> Please provide a valid name.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="pSpecification" class="col-sm-3 col-form-label">Specification</label>
                 <div class="col-sm-9">
-                    <input type="text" name="specification" class="form-control"
-                           id="pSpecification" value="${place.specification}"
-                           placeholder="Enter place`s specification" required>
+                    <select name="specification" class="form-control"
+                            id="pSpecification" value="${place.specification}" required>
+                        <option value="Cafe">Cafe</option>
+                        <option value="Pub">Pub</option>
+                        <option value="Bar">Bar</option>
+                        <option value="Steak">Steak</option>
+                        <option value="BBQ">BBQ</option>
+                        <option value="Seafood">Seafood</option>
+                        <option value="Pizza">Pizza</option>
+                        <option value="Sushi">Sushi</option>
+                        <option value="Fast food">Fast food</option>
+                        <option value="Vegetarian food">Vegetarian food</option>
+                        <option value="Japan food">Japan food</option>
+                        <option value="Italian food">Italian food</option>
+                        <option value="European food">European food</option>
+                        <option value="International food">International food</option>
+                    </select>
                     <div class="invalid-feedback">
-                        Please provide a valid specification.
+                        <i class="fas fa-ban"></i> Please provide a valid specification.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -47,10 +61,10 @@
                     <input type="text" name="city" class="form-control"
                            id="pCity" value="${place.city}" placeholder="Enter place`s city" required>
                     <div class="invalid-feedback">
-                        Please provide a valid city.
+                        <i class="fas fa-ban"></i> Please provide a valid city.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -60,10 +74,10 @@
                     <input type="text" name="address" class="form-control"
                            id="pAddress" value="${place.address}" placeholder="Enter place`s address" required>
                     <div class="invalid-feedback">
-                        Please provide a valid address.
+                        <i class="fas fa-ban"></i> Please provide a valid address.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -73,10 +87,10 @@
                     <textarea name="description" class="form-control" id="place-create-about" rows="3"
                               placeholder="Enter smth about your place" required>${place.description}</textarea>
                     <div class="invalid-feedback">
-                        Please provide a valid description.
+                        <i class="fas fa-ban"></i> Please provide a valid description.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ create TABLE Users
 (
   id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
   email varchar(100) NOT NULL UNIQUE,
-  currentPassword varchar(100) NOT NULL,
+  password varchar(100) NOT NULL,
   firstName varchar(50) NOT NULL,
   lastName varchar(50),
   city varchar(50) NOT NULL

@@ -15,9 +15,9 @@
                 <div class="form-group col-sm-4 col-md-3">
                     <label class="text-secondary"  for="items">Items per page</label>
                     <select class="form-control mb-2 mr-sm-2" name="items" id="items">
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
                     </select>
                 </div>
                 <div class="form-group col-sm-4 col-md-3">
@@ -57,9 +57,9 @@
                          class="img-fluid rounded" alt="">
                 </div>
                 <div class="col-md-7">
-                    <h4>${place.name}</h4>
+                    <h3>${place.name}</h3>
                     <hr>
-                    <p>${place.specification}</p>
+                    <p><i>${place.specification}</i></p>
                     <p>${place.city}</p>
                     <p>${place.address}</p>
                     <a href="/place?id=${place.id}" class="btn btn-primary custom-blue-button">More</a>

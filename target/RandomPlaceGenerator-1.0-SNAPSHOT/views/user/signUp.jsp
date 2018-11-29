@@ -19,10 +19,10 @@
                     <input type="email" name="email" class="form-control"
                            id="email" value="${user.email}" placeholder="Enter your email" required>
                     <div class="invalid-feedback">
-                        Please provide a valid email.
+                        <i class="fas fa-ban"></i> Please provide a valid email.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -33,10 +33,10 @@
                            id="password" value=""
                            placeholder="Enter password" required pattern="[a-zA-Z0-9]{6,20}">
                     <div class="invalid-feedback">
-                        Please provide a valid password.
+                        <i class="fas fa-ban"></i> Please provide a valid password.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -45,12 +45,12 @@
                 <div class="col-sm-9">
                     <input type="password" name="passwordConfirm" class="form-control"
                            id="password-confirm" value=""
-                           placeholder="Enter password once again" required data-match="#currentPassword">
+                           placeholder="Enter password once again" required data-match="#password">
                     <div class="invalid-feedback">
-                        Password do not matches.
+                        <i class="fas fa-ban"></i> Password do not matches.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good! 
                     </div>
                 </div>
             </div>
@@ -60,10 +60,10 @@
                     <input type="text" name="firstName" class="form-control"
                            id="first-name" value="${user.firstName}" placeholder="Enter your first name" required>
                     <div class="invalid-feedback">
-                        Please provide a valid name.
+                        <i class="fas fa-ban"></i> Please provide a valid name.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -73,10 +73,10 @@
                     <input type="text" name="lastName" class="form-control"
                            id="last-name" value="${user.lastName}" placeholder="Enter your last name" required>
                     <div class="invalid-feedback">
-                        Please provide a valid name.
+                        <i class="fas fa-ban"></i> Please provide a valid name.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -86,10 +86,10 @@
                     <input type="text" name="city" class="form-control"
                            id="city" value="${user.city}" placeholder="Enter your city" required>
                     <div class="invalid-feedback">
-                        Please provide a valid city.
+                        <i class="fas fa-ban"></i> Please provide a valid city.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@ public class PlaceDelete extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        resp.sendError(404);
     }
 
     @Override
@@ -36,11 +36,15 @@ public class PlaceDelete extends HttpServlet {
         String id = req.getParameter("id");
         Place place = placeService.findById(id, errorList);
         placeService.deleteById(id, errorList);
-        imageService.deleteFile(place.getImagePath());
         if (errorList.isEmpty()) {
+            imageService.deleteFile(place.getImagePath());
             resp.sendRedirect("/place");
         } else {
-            resp.sendError(404);
+            String error = "";
+            for (String s : errorList) {
+                error += s + "\n";
+            }
+            resp.sendError(404, error);
         }
 
 

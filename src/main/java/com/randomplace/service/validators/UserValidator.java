@@ -44,15 +44,17 @@ public class UserValidator implements Validator {
 
     public boolean validatePasswords(Object object, List<String> errorMessages) {
         UserDTO user = (UserDTO) object;
-        if (isNullOrEmpty(user.getNewPassword())) {
-            errorMessages.add(UserValidationError.PASSWORD_EMPTY_ERROR.getErrorText());
-        } else if (user.getNewPassword().length() < 6 || user.getNewPassword().length() > 20) {
-            errorMessages.add(UserValidationError.PASSWORD_LENGTH_ERROR.getErrorText());
+        if (user == null) {
+            errorMessages.add(UserValidationError.USER_NULL.getErrorText());
         } else {
-            return user.getNewPassword().equals(user.getConfirmPassword());
+            if (isNullOrEmpty(user.getNewPassword())) {
+                errorMessages.add(UserValidationError.PASSWORD_EMPTY_ERROR.getErrorText());
+            } else if (user.getNewPassword().length() < 6 || user.getNewPassword().length() > 20) {
+                errorMessages.add(UserValidationError.PASSWORD_LENGTH_ERROR.getErrorText());
+            } else {
+                return user.getNewPassword().equals(user.getConfirmPassword());
+            }
         }
         return false;
     }
-
-
 }

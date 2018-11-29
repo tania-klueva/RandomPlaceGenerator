@@ -20,10 +20,10 @@
                     <input type="text" name="name" class="form-control"
                            id="pName" value="${place.name}" placeholder="Enter place`s name" required>
                     <div class="invalid-feedback">
-                        Please provide a valid name.
+                        <i class="fas fa-ban"></i> Please provide a valid name.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -34,10 +34,10 @@
                            id="pSpecification" value="${place.specification}"
                            placeholder="Enter place`s specification" required>
                     <div class="invalid-feedback">
-                        Please provide a valid specification.
+                        <i class="fas fa-ban"></i> Please provide a valid specification.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -47,10 +47,10 @@
                     <input type="text" name="city" class="form-control"
                            id="pCity" value="${place.city}" placeholder="Enter place`s city" required>
                     <div class="invalid-feedback">
-                        Please provide a valid city.
+                        <i class="fas fa-ban"></i> Please provide a valid city.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -60,10 +60,10 @@
                     <input type="text" name="address" class="form-control"
                            id="pAddress" value="${place.address}" placeholder="Enter place`s address" required>
                     <div class="invalid-feedback">
-                        Please provide a valid address.
+                        <i class="fas fa-ban"></i> Please provide a valid address.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -73,10 +73,10 @@
                     <textarea name="description" class="form-control" id="place-create-about" rows="3"
                               placeholder="Enter smth about your place" required>${place.description}</textarea>
                     <div class="invalid-feedback">
-                        Please provide a valid description.
+                        <i class="fas fa-ban"></i> Please provide a valid description.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>

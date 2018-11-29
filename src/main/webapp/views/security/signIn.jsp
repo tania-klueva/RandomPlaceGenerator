@@ -14,10 +14,10 @@
                     <input type="email" name="email" class="form-control"
                            id="email" value="" placeholder="Enter your email" required>
                     <div class="invalid-feedback">
-                        Please provide a valid email.
+                        <i class="fas fa-ban"></i> Please provide a valid email.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
@@ -28,10 +28,10 @@
                            id="login-password" value=""
                            placeholder="Enter password" required>
                     <div class="invalid-feedback">
-                        Please provide a valid currentPassword.
+                        <i class="fas fa-ban"></i> Please provide a valid password.
                     </div>
                     <div class="valid-feedback">
-                        Looks good!
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
