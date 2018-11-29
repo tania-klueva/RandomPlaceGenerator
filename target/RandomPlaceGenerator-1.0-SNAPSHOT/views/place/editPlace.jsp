@@ -5,14 +5,15 @@
     <h1 class="text-center py-5 m-after-nav">Add new place</h1>
     <div class="">
         <c:forEach items="${errors}" var="error">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                ${error}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </c:forEach>
-        <form method="post" action="/user/place/edit" enctype="multipart/form-data" class="creation-form needs-validation" novalidate>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    ${error}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:forEach>
+        <form method="post" action="/user/place/edit" enctype="multipart/form-data"
+              class="creation-form needs-validation" novalidate>
             <input type="hidden" name="placeId" value="${place.id}">
             <div class="form-group row">
                 <label for="pName" class="col-sm-3 col-form-label">Name</label>
@@ -48,7 +49,6 @@
                         <option value="European food">European food</option>
                         <option value="International food">International food</option>
                     </select>
-                           placeholder="Enter place`s specification" required>
                     <div class="invalid-feedback">
                         <i class="fas fa-ban"></i> Please provide a valid specification.
                     </div>

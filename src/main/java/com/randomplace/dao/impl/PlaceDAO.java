@@ -3,7 +3,6 @@ package com.randomplace.dao.impl;
 import com.randomplace.connection.DBConnection;
 import com.randomplace.dao.IPlaceDAO;
 import com.randomplace.models.Place;
-import com.randomplace.models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -136,8 +135,8 @@ public class PlaceDAO implements IPlaceDAO {
     public List<Place> findAllForPages(int page, int count, String fieldToSortBy, String search) {
         try {
             List<Place> places = new ArrayList<>();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places WHERE `name` LIKE ? ORDER BY " + fieldToSortBy +" LIMIT ? OFFSET ?");
-            preparedStatement.setString(1, "%"+search+"%");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name, specification, city, address, description, imagePath, userId FROM Places WHERE `name` LIKE ? ORDER BY " + fieldToSortBy + " LIMIT ? OFFSET ?");
+            preparedStatement.setString(1, "%" + search + "%");
             preparedStatement.setInt(2, count);
             preparedStatement.setInt(3, count * (page - 1));
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -220,7 +219,7 @@ public class PlaceDAO implements IPlaceDAO {
     public int countRecords(String search) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(id) from Places  WHERE `name` LIKE ?");
-            preparedStatement.setString(1, "%"+search+"%");
+            preparedStatement.setString(1, "%" + search + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt(1);

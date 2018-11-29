@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -19,6 +18,7 @@ public class PlaceValidatorTest {
         verify(list).add(any());
 
     }
+
     @Test
     public void validateHalfEmpty() {
         List list = mock(List.class);

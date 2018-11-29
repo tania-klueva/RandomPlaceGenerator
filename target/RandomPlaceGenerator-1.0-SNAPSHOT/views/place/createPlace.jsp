@@ -12,10 +12,11 @@
                 </button>
             </div>
         </c:forEach>
-        <form method="post" action="/user/place/create" enctype="multipart/form-data" class="creation-form needs-validation" novalidate>
+        <form method="post" action="/user/place/create" enctype="multipart/form-data"
+              class="creation-form needs-validation" novalidate>
             <input type="hidden" value="${place.id}">
             <div class="form-group row">
-                <label for="pName" class="col-sm-3 col-form-label">Name</label>
+                <label for="pName" class="col-sm-3 col-form-label">Name*</label>
                 <div class="col-sm-9">
                     <input type="text" name="name" class="form-control"
                            id="pName" value="${place.name}" placeholder="Enter place`s name" required>
@@ -28,7 +29,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="pSpecification" class="col-sm-3 col-form-label">Specification</label>
+                <label for="pSpecification" class="col-sm-3 col-form-label">Specification*</label>
                 <div class="col-sm-9">
                     <select name="specification" class="form-control"
                             id="pSpecification" value="${place.specification}" required>
@@ -57,7 +58,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="pCity" class="col-sm-3 col-form-label">City</label>
+                <label for="pCity" class="col-sm-3 col-form-label">City*</label>
                 <div class="col-sm-9">
                     <input type="text" name="city" class="form-control"
                            id="pCity" value="${place.city}" placeholder="Enter place`s city" required>
@@ -70,7 +71,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="pAddress" class="col-sm-3 col-form-label">Address</label>
+                <label for="pAddress" class="col-sm-3 col-form-label">Address*</label>
                 <div class="col-sm-9">
                     <input type="text" name="address" class="form-control"
                            id="pAddress" value="${place.address}" placeholder="Enter place`s address" required>
@@ -83,7 +84,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="place-create-about" class="col-sm-3 col-form-label">About</label>
+                <label for="place-create-about" class="col-sm-3 col-form-label">About*</label>
                 <div class="col-sm-9">
                     <textarea name="description" class="form-control" id="place-create-about" rows="3"
                               placeholder="Enter smth about your place" required>${place.description}</textarea>

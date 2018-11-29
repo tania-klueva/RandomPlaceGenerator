@@ -14,7 +14,7 @@
         </c:forEach>
         <form method="post" action="<c:url value="/signup"/>" class="creation-form needs-validation" novalidate>
             <div class="form-group row">
-                <label for="email" class="col-sm-3 col-form-label">E-mail</label>
+                <label for="email" class="col-sm-3 col-form-label">E-mail*</label>
                 <div class="col-sm-9">
                     <input type="email" name="email" class="form-control"
                            id="email" value="${user.email}" placeholder="Enter your email" required>
@@ -27,13 +27,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password" class="col-sm-3 col-form-label">Password</label>
+                <label for="password" class="col-sm-3 col-form-label">Password*</label>
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control"
                            id="password" value="${user.newPassword}"
                            placeholder="Enter password" required pattern="[a-zA-Z0-9]{6,20}">
                     <div class="invalid-feedback">
-                        <i class="fas fa-ban"></i> Please provide a valid password.
+                        <i class="fas fa-ban"></i> Please provide a valid password. It should be from 6 to 20 symbs.
                     </div>
                     <div class="valid-feedback">
                         <i class="far fa-check-circle"></i> Good!
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password-confirm" class="col-sm-3 col-form-label">Confirm password</label>
+                <label for="password-confirm" class="col-sm-3 col-form-label">Confirm password*</label>
                 <div class="col-sm-9">
                     <input type="password" name="passwordConfirm" class="form-control"
                            id="password-confirm" value=""
@@ -50,12 +50,12 @@
                         <i class="fas fa-ban"></i> Password do not matches.
                     </div>
                     <div class="valid-feedback">
-                        <i class="far fa-check-circle"></i> Good! 
+                        <i class="far fa-check-circle"></i> Good!
                     </div>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="first-name" class="col-sm-3 col-form-label">First Name</label>
+                <label for="first-name" class="col-sm-3 col-form-label">First Name*</label>
                 <div class="col-sm-9">
                     <input type="text" name="firstName" class="form-control"
                            id="first-name" value="${user.firstName}" placeholder="Enter your first name" required>
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="last-name" class="col-sm-3 col-form-label">Last Name</label>
+                <label for="last-name" class="col-sm-3 col-form-label">Last Name*</label>
                 <div class="col-sm-9">
                     <input type="text" name="lastName" class="form-control"
                            id="last-name" value="${user.lastName}" placeholder="Enter your last name" required>
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="city" class="col-sm-3 col-form-label">City</label>
+                <label for="city" class="col-sm-3 col-form-label">City*</label>
                 <div class="col-sm-9">
                     <input type="text" name="city" class="form-control"
                            id="city" value="${user.city}" placeholder="Enter your city" required>

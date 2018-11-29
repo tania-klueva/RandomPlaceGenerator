@@ -7,14 +7,14 @@ import com.randomplace.service.validators.Validator;
 public class UserUtils {
     private static UserUtils ourInstance = new UserUtils();
 
+    private UserUtils() {
+    }
+
     public static UserUtils getInstance() {
         return ourInstance;
     }
 
-    private UserUtils() {
-    }
-
-    public User dtoToEntity(UserDTO userDTO){
+    public User dtoToEntity(UserDTO userDTO) {
         User user = new User();
         String id = userDTO.getId();
         if (!(Validator.isNullOrEmpty(id))) {

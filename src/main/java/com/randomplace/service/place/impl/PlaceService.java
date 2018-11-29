@@ -87,7 +87,7 @@ public class PlaceService implements IPlaceService {
         if (Validator.isNullOrEmpty(countString)) {
             errorList.add(PlaceValidationError.WRONG_COUNT.getErrorText());
         }
-        if (search == null){
+        if (search == null) {
             search = "";
         }
         if (errorList.isEmpty()) {
@@ -180,9 +180,9 @@ public class PlaceService implements IPlaceService {
             } else {
                 if (errorList.isEmpty()) {
                     double i;
-                    if (Validator.isNullOrEmpty(search)){
+                    if (Validator.isNullOrEmpty(search)) {
                         i = placeDAO.countRecords();
-                    }else{
+                    } else {
                         i = placeDAO.countRecords(search);
                     }
                     if (i != -1) {

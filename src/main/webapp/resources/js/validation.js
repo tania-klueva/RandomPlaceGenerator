@@ -3,8 +3,8 @@ $(document).ready(function () {
     let passwordConfirm = document.getElementById("password-confirm");
     let validate = Array.prototype.filter.call($(".needs-validation"), function (form) {
         form.addEventListener('submit', function (event) {
-            if (password != null && passwordConfirm != null){
-                if(password.value !== passwordConfirm.value) {
+            if (password != null && passwordConfirm != null) {
+                if (password.value !== passwordConfirm.value) {
                     passwordConfirm.setCustomValidity("Passwords Don't Match");
                 } else {
                     passwordConfirm.setCustomValidity("");

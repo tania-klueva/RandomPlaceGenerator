@@ -10,11 +10,12 @@
             <div class="form-row w-100">
                 <div class="form-group col-sm-4 col-md-4">
                     <label class="text-secondary" for="search">Search by name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="search" name="search" value="${search}" placeholder="Search...">
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="search" name="search" value="${search}"
+                           placeholder="Search...">
                 </div>
                 <div class="form-group col-sm-4 col-md-3">
-                    <label class="text-secondary"  for="items">Items per page</label>
-                    <select class="form-control mb-2 mr-sm-2" name="items" id="items" >
+                    <label class="text-secondary" for="items">Items per page</label>
+                    <select class="form-control mb-2 mr-sm-2" name="items" id="items">
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
@@ -36,7 +37,7 @@
     </div>
 
     <c:forEach items="${errors}" var="error">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-light alert-dismissible fade show" role="alert">
                 ${error}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -73,7 +74,8 @@
 
                 <c:if test="${page != 1}">
                     <li class="page-item">
-                        <a class="page-link" href="/place?items=${20}&page=${page-1}&sort=${sort}" aria-label="Previous">
+                        <a class="page-link" href="/place?items=${20}&page=${page-1}&sort=${sort}"
+                           aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>

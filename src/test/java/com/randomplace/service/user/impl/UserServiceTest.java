@@ -1,12 +1,9 @@
 package com.randomplace.service.user.impl;
 
-import com.randomplace.dao.IUserDAO;
 import com.randomplace.dao.impl.UserDAO;
 import com.randomplace.dto.UserDTO;
-import com.randomplace.models.User;
 import com.randomplace.service.validators.UserValidator;
 import com.randomplace.utils.PasswordEncoder;
-import com.randomplace.utils.UserUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,12 +12,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
@@ -33,7 +27,7 @@ public class UserServiceTest {
     @InjectMocks
     UserService userService;
 
-    public UserDTO createUser(){
+    public UserDTO createUser() {
         UserDTO userDTO = new UserDTO();
         userDTO.setId("1");
         userDTO.setFirstName("name");

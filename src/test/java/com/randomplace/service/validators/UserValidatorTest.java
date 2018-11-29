@@ -1,12 +1,12 @@
 package com.randomplace.service.validators;
 
 import com.randomplace.dto.UserDTO;
-import com.randomplace.models.Place;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -22,6 +22,7 @@ public class UserValidatorTest {
         userValidator.validate(user, list);
         verify(list, times(1)).add(anyString());
     }
+
     @Test
     public void validateEmpty() {
         List list = mock(List.class);
@@ -31,6 +32,7 @@ public class UserValidatorTest {
         userValidator.validate(user, list);
         verify(list, times(2)).add(anyString());
     }
+
     @Test
     public void validateFull() {
         List list = mock(List.class);
@@ -47,10 +49,12 @@ public class UserValidatorTest {
     public void isNullOrEmptyWithEmptyString() {
         assertTrue(userValidator.isNullOrEmpty(""));
     }
+
     @Test
     public void isNullOrEmptyWithNull() {
         assertTrue(userValidator.isNullOrEmpty(null));
     }
+
     @Test
     public void isNullOrEmpty() {
         assertFalse(userValidator.isNullOrEmpty("lol"));
@@ -64,6 +68,7 @@ public class UserValidatorTest {
         verify(list, times(1)).add(anyString());
         assertFalse(userValidator.validatePasswords(user, list));
     }
+
     @Test
     public void validatePasswordsLength() {
         List list = mock(List.class);
@@ -73,6 +78,7 @@ public class UserValidatorTest {
         verify(list, times(1)).add(anyString());
         assertFalse(userValidator.validatePasswords(user, list));
     }
+
     @Test
     public void validatePasswordsNotMatches() {
         List list = mock(List.class);
@@ -83,6 +89,7 @@ public class UserValidatorTest {
         verify(list, never()).add(anyString());
         assertFalse(userValidator.validatePasswords(user, list));
     }
+
     @Test
     public void validatePasswords() {
         List list = mock(List.class);

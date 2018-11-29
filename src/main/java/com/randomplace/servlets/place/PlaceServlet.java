@@ -6,8 +6,6 @@ import com.randomplace.security.UserSession;
 import com.randomplace.service.place.impl.PlaceService;
 import com.randomplace.service.validators.Validator;
 import com.randomplace.utils.PagePath;
-import com.randomplace.utils.PlaceSortingField;
-import com.randomplace.utils.errorMessages.PlaceValidationError;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,9 +57,9 @@ public class PlaceServlet extends HttpServlet {
             if (errorList.isEmpty()) {
                 if (place != null) {
                     req.setAttribute("place", place);
-                    if (currentUser!= null && currentUser.equals(place.getUser())){
+                    if (currentUser != null && currentUser.equals(place.getUser())) {
                         req.setAttribute("canEdit", true);
-                    }else{
+                    } else {
                         req.setAttribute("canEdit", false);
                     }
                     req.getRequestDispatcher(PagePath.PLACE_PAGE).forward(req, resp);

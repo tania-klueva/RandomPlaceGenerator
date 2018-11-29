@@ -28,11 +28,11 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.height-300{
+.height-300 {
     height: 300px;
 }
 
-.overflow-hidden{
+.overflow-hidden {
     overflow: hidden;
 }
 
@@ -153,12 +153,12 @@ body {
     color: snow;
 }
 
-.error-page h1{
+.error-page h1 {
     font-family: 'Monoton', cursive;
     font-size: 12rem;
 }
 
-.error-page h5{
+.error-page h5 {
     font-family: 'Comfortaa', cursive;
 }
 
@@ -295,10 +295,10 @@ body {
     bottom: 0;
 }
 
-
-.description{
+.description {
     text-align: justify;
 }
+
 /*CREATEPLACE*/
 /**/
 /**/

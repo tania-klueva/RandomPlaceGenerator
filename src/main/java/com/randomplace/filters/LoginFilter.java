@@ -16,8 +16,8 @@ public class LoginFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         User currentUser = UserSession.getCurrentUser((HttpServletRequest) req);
-        if (currentUser != null){
-            ((HttpServletResponse)resp).sendRedirect("/user");
+        if (currentUser != null) {
+            ((HttpServletResponse) resp).sendRedirect("/user");
         }
         chain.doFilter(req, resp);
     }

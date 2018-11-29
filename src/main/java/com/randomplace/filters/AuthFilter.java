@@ -1,8 +1,5 @@
 package com.randomplace.filters;
 
-import com.randomplace.security.UserSession;
-import com.randomplace.utils.PagePath;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +13,7 @@ public class AuthFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        HttpSession session =((HttpServletRequest) req).getSession();
+        HttpSession session = ((HttpServletRequest) req).getSession();
         Object attribute = session.getAttribute("user");
         if (attribute == null) {
             req.setAttribute("isAuthorized", false);

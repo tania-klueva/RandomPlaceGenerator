@@ -44,7 +44,7 @@ public class UserCreate extends HttpServlet {
             resp.sendRedirect("/signin");
         } else {
             req.setAttribute("errors", errorList);
-            req.setAttribute("userDTO", userDTO);
+            req.setAttribute("user", userDTO);
             doGet(req, resp);
         }
     }

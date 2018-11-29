@@ -51,7 +51,7 @@ public class PlaceCreate extends HttpServlet {
         User currentUser = UserSession.getCurrentUser(req);
         if (currentUser != null) {
             req.setAttribute("user", currentUser);
-        }else{
+        } else {
             req.getRequestDispatcher(PagePath.ERROR);
         }
         Place place = new Place();

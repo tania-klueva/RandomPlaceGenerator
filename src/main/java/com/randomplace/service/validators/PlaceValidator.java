@@ -18,7 +18,6 @@ public class PlaceValidator implements Validator {
     }
 
 
-
     @Override
     public void validate(Object object, List<String> errorMessages) {
         Place place = (Place) object;

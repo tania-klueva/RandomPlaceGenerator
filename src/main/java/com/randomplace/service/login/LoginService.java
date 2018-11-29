@@ -29,7 +29,7 @@ public class LoginService {
             errorList.add(LoginError.EMAIL_NOT_EXIST.getErrorText());
         } else {
             userDTO.setEncryptedPassword(userDB.getPassword());
-            if (!passwordEncoder.isMatches(userDTO)){
+            if (!passwordEncoder.isMatches(userDTO)) {
                 errorList.add(LoginError.PASSWORD_ERROR.getErrorText());
             }
         }

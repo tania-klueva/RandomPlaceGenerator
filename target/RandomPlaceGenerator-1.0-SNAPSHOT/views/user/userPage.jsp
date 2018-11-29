@@ -181,7 +181,7 @@
                 <div class="tab-pane fade p-3" id="place-pills" role="tabpanel"
                      aria-labelledby="place-pills-tab">
                     <c:forEach items="${userPlaceErrors}" var="userPlaceError">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alert-light alert-dismissible fade show" role="alert">
                                 ${userPlaceError}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
